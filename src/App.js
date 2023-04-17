@@ -1,5 +1,6 @@
 import logo from './logo.svg'
 import './App.css'
+import House from './pages/House'
 
 function App() {
   return (
