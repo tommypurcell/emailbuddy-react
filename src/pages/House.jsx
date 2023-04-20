@@ -1,20 +1,20 @@
-// let House = [
-//  { title: String,
-// description: Description: Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjs
-// ksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsld
-// flksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks s
-// dfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjs
-// fksjldfjsljflksjlksdjf fkjs,
-// price: Number,
-// booking: Boolean,
-// location: String,
-// rooms: Number,
-// rating: Number 1 or -1,
-// photos: Array of Stings,
-// host: Object
-//     name: String,
-//     avatar: String}
-// ]
+let house = {
+  title: 'Luxury Villa in Chaweng',
+  description:
+    'Description: ho hoh ho Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjsksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsldflksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks sdfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjsfksjldfjsljflksjlksdjf fkjs',
+  price: 350,
+  booking: false,
+  location: 'Koh Samui',
+  rooms: 4,
+  rating: 1,
+  photos: [
+    'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+    'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+  ],
+  host: { name: 'Tommy', avatar: 'images/randomuser1.png' },
+}
+
+console.log(house.title)
 
 export default function House() {
   return (
@@ -146,15 +146,31 @@ export default function House() {
         <div className="container py-5">
           <div className="row">
             <div className="col">
-              <h2>Luxury Villa in Chaweng</h2>
-              <span>Koh Samui - 4 rooms</span>
-              <p>
-                Description: Pargraph goes here dah adha aksjdlf asdklfja sdf
-                skldfjs ksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf
-                sdkfjsld flksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf
-                ksjfljlksdlfks s dfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd
-                slkjdflksj flkjs fksjldfjsljflksjlksdjf fkjs
-              </p>
+              <h2>{house.title}</h2>
+              <div className="container">
+                <div className="row">
+                  <div className="col-4">
+                    <span>
+                      {' '}
+                      {house.location} - {house.rooms} rooms
+                    </span>
+                    <div className="col">
+                      <img
+                        src={house.host.avatar}
+                        alt="randomuser"
+                        className="rounded-circle h-50"
+                      />
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div>
+                      <div className="text-muted">Hosted By</div>
+                      <div>{house.host.name}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p>{house.description}</p>
               <h3>0 Reviews</h3>
               <div className="mb-3">
                 <label
