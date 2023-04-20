@@ -51,7 +51,7 @@ let houses = [
   },
 ]
 
-function Houses() {
+export default function Houses() {
   return (
     <>
       {/* nav bar */}
@@ -202,5 +202,3 @@ function Houses() {
     </>
   )
 }
-
-export default Houses
