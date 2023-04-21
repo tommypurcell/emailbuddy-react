@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 let house = {
   title: 'Luxury Villa in Chaweng',
   description:
@@ -14,9 +16,12 @@ let house = {
   host: { name: 'Tommy', avatar: 'images/randomuser1.png' },
 }
 
-console.log(house.title)
-
 export default function House() {
+  // state
+  const [selectedPhoto, setSelectedPhoto] = useState(
+    'url("https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png")'
+  )
+  console.log(selectedPhoto)
   return (
     <>
       <>
@@ -59,8 +64,7 @@ export default function House() {
           <div className="row">
             <div
               style={{
-                backgroundImage:
-                  'url("https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png")',
+                backgroundImage: selectedPhoto,
                 backgroundSize: 'cover',
               }}
               className="col"
@@ -71,69 +75,96 @@ export default function House() {
               <div className="container">
                 <div className="row">
                   {/* need to fix these later to not be img-thumbnail because border */}
-                  <div className="col p-3">
+                  <div className="col p-3 ">
                     <img
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
                       src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
                       className="img-thumbnail p-0"
                       alt="image"
                     />
                   </div>
-                  <div className="col p-3">
+                  <div className="col p-3 ">
                     <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png"
                       className="img-thumbnail p-0"
                       alt="image"
                     />
                   </div>
-                  <div className="col p-3">
+                  <div className="col p-3 ">
                     <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
-                      className="img-thumbnail p-0"
-                      alt="image"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col p-3">
-                    <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
-                      className="img-thumbnail p-0"
-                      alt="image"
-                    />
-                  </div>
-                  <div className="col p-3">
-                    <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
-                      className="img-thumbnail p-0"
-                      alt="image"
-                    />
-                  </div>
-                  <div className="col p-3">
-                    <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png"
                       className="img-thumbnail p-0"
                       alt="image"
                     />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col p-3">
+                  <div className="col p-3 ">
                     <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_04.png"
                       className="img-thumbnail p-0"
                       alt="image"
                     />
                   </div>
-                  <div className="col p-3">
+                  <div className="col p-3 ">
                     <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png"
                       className="img-thumbnail p-0"
                       alt="image"
                     />
                   </div>
-                  <div className="col p-3">
+                  <div className="col p-3 ">
                     <img
-                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png"
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_07.png"
+                      className="img-thumbnail p-0"
+                      alt="image"
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col p-3 ">
+                    <img
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2003/house_03_01.png"
+                      className="img-thumbnail p-0"
+                      alt="image"
+                    />
+                  </div>
+                  <div className="col p-3 ">
+                    <img
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png"
+                      className="img-thumbnail p-0"
+                      alt="image"
+                    />
+                  </div>
+                  <div className="col p-3 ">
+                    <img
+                      onClick={(e) => {
+                        setSelectedPhoto('url(' + e.target.src + ')')
+                      }}
+                      src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png"
                       className="img-thumbnail p-0"
                       alt="image"
                     />
@@ -147,20 +178,18 @@ export default function House() {
           <div className="row">
             <div className="col">
               <h2>{house.title}</h2>
+              <span>
+                {' '}
+                {house.location} - {house.rooms} rooms
+              </span>
               <div className="container">
                 <div className="row">
-                  <div className="col-4">
-                    <span>
-                      {' '}
-                      {house.location} - {house.rooms} rooms
-                    </span>
-                    <div className="col">
-                      <img
-                        src={house.host.avatar}
-                        alt="randomuser"
-                        className="rounded-circle h-50"
-                      />
-                    </div>
+                  <div className="col-2">
+                    <img
+                      src={house.host.avatar}
+                      alt="randomuser"
+                      className="rounded-circle w-50"
+                    />
                   </div>
                   <div className="col">
                     <div>
