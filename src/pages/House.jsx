@@ -236,8 +236,8 @@ export default function House() {
                     add date
                   </div>
                   {/* <textarea class="form-control" placeholder="Send the host a message..." id="floatingTextarea2" style="height: 100px"></textarea>
-        <label for="floatingTextarea2"></label>
-        <button type="button" class="btn btn-success mt-2">Request Booking</button> */}
+                  <label for="floatingTextarea2"></label>
+                  <button type="button" class="btn btn-success mt-2">Request Booking</button> */}
                 </div>
               </div>
             </div>
