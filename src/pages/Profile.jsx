@@ -1,4 +1,20 @@
 export default function Profile() {
+  // object user
+  let user = {
+    name: 'tommy',
+    email: 'tommy@tommy.com',
+    avatar: 'images/randomuser1.png',
+  }
+
+  // function that runs when form is submitted updates object data
+  function submitProfile(e) {
+    e.preventDefault()
+    user.name = e.target.name.value
+    user.email = e.target.email.value
+    user.avatar = e.target.avatar.value
+    console.log(user)
+  }
+
   return (
     <>
       {/* nav bar */}
@@ -42,14 +58,24 @@ export default function Profile() {
           {/* column for profile setup */}
           <div className="col-4 me-5 pe-5">
             <h2 className="border-bottom pb-3">Profile</h2>
-            <form>
+            <form onSubmit={(e) => submitProfile(e)}>
               <div className="text-start">Name</div>
               <div className="">
-                <input type="text" className="form-control" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  placeholder={user.name}
+                />
               </div>
               <div className="text-start">Email</div>
               <div className="">
-                <input type="email" className="form-control" />
+                <input
+                  type="email"
+                  className="form-control"
+                  name="email"
+                  placeholder={user.email}
+                />
               </div>
               <div className="text-start py-2">Profile Picture</div>
               <div className="">
@@ -62,12 +88,15 @@ export default function Profile() {
               <div className="">
                 <input
                   type="url"
-                  placeholder="https://..."
+                  name="avatar"
+                  placeholder={user.avatar}
                   className="my-3 form-control"
                 />
               </div>
               <div className="">
-                <button className="btn btn-success">Save Changes</button>
+                <button type="submit" className="btn btn-success">
+                  Save Changes
+                </button>
               </div>
             </form>
           </div>
