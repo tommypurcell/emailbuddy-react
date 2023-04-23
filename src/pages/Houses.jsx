@@ -80,7 +80,7 @@ export default function Houses() {
       {/* search bar */}
       {/* background light div */}
       <div className="bg-light py-3">
-        <form className="form-control" onSubmit={(e) => sendForm(e)}>
+        <form onSubmit={(e) => sendForm(e)}>
           <div className="container">
             <div className="row">
               <div className="col">
