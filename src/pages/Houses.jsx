@@ -1,3 +1,5 @@
+import Nav from '../components/Nav'
+
 export default function Houses() {
   // state
   // data
@@ -73,40 +75,7 @@ export default function Houses() {
   return (
     <>
       {/* nav bar */}
-      <nav className="logo-bar container ">
-        <div className="row align-items-center">
-          <div className="col text-start p-3">
-            <img
-              src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
-              alt="logo"
-              className="w-25"
-            />
-          </div>
-          <div className="col text-end">
-            <button
-              type="button"
-              className="btn btn-outline-secondary"
-              style={{ alignItems: 'center', height: 44 }}
-            >
-              <img
-                src="/images/randomuser1.png"
-                alt="user"
-                className="rounded-circle w-25 "
-                style={{ height: 30 }}
-              />{' '}
-              User Name
-            </button>
-            <a
-              type="button"
-              className="btn btn-outline-secondary"
-              style={{ height: 44 }}
-            >
-              Logout
-            </a>
-            {/* <button type="button" class="btn btn-outline-secondary">Login</button> */}
-          </div>
-        </div>
-      </nav>
+      <Nav />
       {/* search bar */}
       {/* background light div */}
       <div className="bg-light py-3">
@@ -188,9 +157,9 @@ export default function Houses() {
         <div className="row g-4">
           {/* first row of cards */}
           {houses.map((house, index) => (
-            // {/* col-3 makes it so that it wraps after the 4th card */}
             // {/* #TODO add gap */}
             <div className="col-3" key={index}>
+              {/* col-3 makes it so that it wraps after the 4th card */}
               {/* 1st card */}
               <div className="card">
                 <img src={house.image} className="card-img-top" alt="..." />

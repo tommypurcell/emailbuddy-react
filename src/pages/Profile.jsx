@@ -1,3 +1,5 @@
+import Nav from '../components/Nav'
+
 export default function Profile() {
   // object user
   let user = {
@@ -83,39 +85,7 @@ export default function Profile() {
   return (
     <>
       {/* nav bar */}
-      <nav className="logo-bar container mb-3">
-        <div className="row align-items-center">
-          <div className="col text-start p-3">
-            <img
-              src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
-              alt="logo"
-              className="w-25"
-            />
-          </div>
-          <div className="col text-end">
-            <button
-              type="button"
-              className="btn btn-outline-secondary"
-              style={{ alignItems: 'center' }}
-            >
-              <img
-                src="images/randomuser1.png"
-                alt="user"
-                className="rounded-circle w-25"
-                style={{ height: 30 }}
-              />
-              User Name
-            </button>
-            <a
-              type="button"
-              className="btn btn-outline-secondary"
-              style={{ height: 44 }}
-            >
-              Logout
-            </a>
-          </div>
-        </div>
-      </nav>
+      <Nav />
       {/* main container */}
       <div className="container">
         {/* single row for page */}
