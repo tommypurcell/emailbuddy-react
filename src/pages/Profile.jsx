@@ -5,6 +5,71 @@ export default function Profile() {
     email: 'tommy@tommy.com',
     avatar: 'images/randomuser1.png',
   }
+  // data
+
+  // houses array
+  let houses = [
+    {
+      image:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2002/house_02_01.png',
+      title: 'Luxury Villa in Chaweng',
+      price: 350,
+      description:
+        'This is a stylish house that has everything you need on your vacation.',
+      location: 'Koh Samui',
+      rooms: 3,
+      reviews: 2,
+      score: 8,
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2003/house_03_01.png',
+      title: 'Private Villa Lotus 1',
+      price: 150,
+      description:
+        'This is a stylish house that has everything you need on your vacation.',
+      location: 'Koh Phangan',
+      rooms: 2,
+      reviews: 1,
+      score: 8,
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2004/house_04_01.png',
+      title: 'Mountain Villa',
+      price: 200,
+      description:
+        'This is a stylish house that has everything you need on your vacation.',
+      location: 'Koh Phangan',
+      rooms: 4,
+      reviews: 6,
+      score: 7,
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
+      title: 'Pool Villa',
+      price: 100,
+      description:
+        'This is a stylish house that has everything you need on your vacation.',
+      location: 'Koh Phangan',
+      rooms: 3,
+      reviews: 0,
+      score: 0,
+    },
+    {
+      image:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
+      title: 'Pool Villa',
+      price: 100,
+      description:
+        'This is a stylish house that has everything you need on your vacation.',
+      location: 'Koh Phangan',
+      rooms: 3,
+      reviews: 0,
+      score: 0,
+    },
+  ]
 
   // function that runs when form is submitted updates object data
   function submitProfile(e) {
@@ -104,52 +169,38 @@ export default function Profile() {
           <div className="col">
             <h2 className="border-bottom pb-3">My Listings</h2>
             <button className="btn btn-success my-3">List a House</button>
-            <div className="card mb-3 p-0">
-              <div className="row g-0">
-                <div className="col-md-4">
-                  <img
-                    src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png"
-                    className="img-fluid rounded-start"
-                    alt="..."
-                  />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <h5 className="card-title">Luxury Villa in Chaweng</h5>
-                    <span className="text-muted">4 rooms - $350/night</span>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <button className="btn btn-outline-secondary">Edit</button>
-                    <button className="btn btn-outline-success">View</button>
+            <div className="row g-0">
+              <div className="col md-8">
+                {houses.map((house, index) => (
+                  <div key={index} className="card mb-3 p-0">
+                    <div className="container">
+                      <div className="row">
+                        <div className="col">
+                          <img
+                            src={house.image}
+                            className="img-fluid rounded-start"
+                            alt="..."
+                          />
+                        </div>
+                        <div className="col">
+                          <div className="card-body">
+                            <h5 className="card-title">{house.title}</h5>
+                            <span className="text-muted">
+                              {house.rooms} rooms - ${house.price}/night
+                            </span>
+                            <p className="card-text">{house.description}</p>
+                            <button className="btn btn-outline-secondary">
+                              Edit
+                            </button>
+                            <button className="btn btn-outline-success">
+                              View
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="card mb-3 p-0">
-              <div className="row g-0">
-                <div className="col-md-4">
-                  <img
-                    src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png"
-                    className="img-fluid rounded-start"
-                    alt="..."
-                  />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <h5 className="card-title">Luxury Villa in Chaweng</h5>
-                    <span className="text-muted">4 rooms - $350/night</span>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <button className="btn btn-outline-secondary">Edit</button>
-                    <button className="btn btn-outline-success">View</button>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
