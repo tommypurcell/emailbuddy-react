@@ -102,7 +102,7 @@ export default function Houses() {
                     <i className="fa-solid fa-house" />
                   </span>
                   <select className="form-select" name="rooms">
-                    <option>Open this select menu</option>
+                    <option value="">Open this select menu</option>
                     <option>One Bedroom</option>
                     <option>Two Bedroom</option>
                     <option>Three Bedroom</option>
@@ -113,13 +113,13 @@ export default function Houses() {
                 <div className="input-group">
                   <span className="input-group-text">
                     <i className="fa-solid fa-dollar-sign" />
+                    <input
+                      name="price"
+                      type="text"
+                      className="form-control"
+                      placeholder="Price..."
+                    />
                   </span>
-                  <select className="form-select" name="price">
-                    <option>Open this select menu</option>
-                    <option>$</option>
-                    <option>$$</option>
-                    <option>$$$</option>
-                  </select>
                 </div>
               </div>
               <div className="col">
@@ -128,7 +128,7 @@ export default function Houses() {
                     <i className="fa-solid fa-sort" />
                   </span>
                   <select className="form-select" name="sort">
-                    <option>Open this select menu</option>
+                    <option value="">Open this select menu</option>
                     <option>Price (Low to High)</option>
                     <option>Location</option>
                     <option>Number of Rooms (Low to High)</option>
@@ -137,7 +137,6 @@ export default function Houses() {
               </div>
               <div className="col">
                 <div className="input-group">
-                  {/* when i add a form around the input and button it messes up the style */}
                   <input
                     name="name"
                     type="text"

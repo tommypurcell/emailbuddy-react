@@ -2,28 +2,57 @@ import { useState } from 'react'
 import Nav from '../components/Nav'
 import Review from '../components/Review'
 
-let house = {
-  title: 'Luxury Villa in Chaweng',
-  description:
-    'Description: ho hoh ho Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjsksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsldflksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks sdfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjsfksjldfjsljflksjlksdjf fkjs',
-  price: 350,
-  booking: false,
-  location: 'Koh Samui',
-  rooms: 4,
-  rating: 1,
-  photos: [
-    'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-    'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-  ],
-  host: { name: 'Tommy', avatar: 'images/randomuser1.png' },
-}
-
 export default function House() {
+  // data
+  let house = {
+    title: 'Luxury Villa in Chaweng',
+    description:
+      'Description: ho hoh ho Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjsksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsldflksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks sdfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjsfksjldfjsljflksjlksdjf fkjs',
+    price: 350,
+    booking: false,
+    location: 'Koh Samui',
+    rooms: 4,
+    rating: 1,
+    photos: [
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+    ],
+    host: { name: 'Tommy', avatar: 'images/randomuser1.png' },
+  }
+
+  let reviewObj = {
+    name: 'Tom',
+    avatar: '/images/randomuser1.png',
+    date: '4/24/2023',
+  }
+
   // state
   const [selectedPhoto, setSelectedPhoto] = useState(
     'url("https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png")'
   )
+  const [reviews, setReviews] = useState([])
+  // functions
 
+  // update reviewObj rating based on which thumbs up button is clicked
+  function setRating(num) {
+    reviewObj.rating = num
+  }
+
+  // update reviewObj description as it is typed in the text area
+  function setDescription(str) {
+    reviewObj.description = str
+  }
+
+  // on submitting the review form add review to list of reviews array
+  function addReview(e) {
+    e.preventDefault()
+
+    let newReview = [...reviews]
+    newReview.push(reviewObj)
+    setReviews(newReview)
+    console.log(newReview)
+    console.log(reviews)
+  }
   return (
     <>
       <>
@@ -169,7 +198,8 @@ export default function House() {
               </div>
               <p>{house.description}</p>
               <h3>0 Reviews</h3>
-              <div className="mb-3">
+              <div className="mb-3"></div>
+              <form onSubmit={(e) => addReview(e)}>
                 <label
                   htmlFor="exampleFormControlTextarea1"
                   className="form-label"
@@ -177,28 +207,37 @@ export default function House() {
                   Example textarea
                 </label>
                 <textarea
+                  name="description"
                   className="form-control"
                   id="exampleFormControlTextarea1"
                   rows={3}
                   defaultValue={''}
+                  onKeyUp={(e) => setDescription(e.target.value)}
                 />
-              </div>
-              <div>
-                <button type="button" className="btn btn-outline-success">
-                  <i className="fa fa-thumbs-up" />
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={() => setRating(1)}
+                  >
+                    <i className="fa fa-thumbs-up" />
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-warning border"
+                    onClick={() => setRating(-1)}
+                  >
+                    <i className="fa fa-thumbs-down" />
+                  </button>
+                </div>
+                <button type="submit" className="btn btn-success mt-2">
+                  Leave a Review
                 </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-warning border"
-                >
-                  <i className="fa fa-thumbs-down" />
-                </button>
-              </div>
-              <button type="button" className="btn btn-success mt-2">
-                Submit
-              </button>
+              </form>
               {/* review */}
-              <Review />
+              {reviews.map((review, index) => (
+                <Review review={review} key={index} />
+              ))}
             </div>
             <div className="col-4">
               <div className="border shadow rounded">

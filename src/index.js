@@ -7,13 +7,12 @@ import HouseCreate from './pages/HouseCreate'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import SignUp from './pages/SignUp'
-
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <Houses />
+    <House />
   </React.StrictMode>
 )
 

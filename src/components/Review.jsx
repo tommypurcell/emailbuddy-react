@@ -1,27 +1,24 @@
-export default function Review() {
+export default function Review({ review, index }) {
   return (
     <>
-      <div className="container border mt-5">
+      <div key={index} className="container border mt-5">
         <div className="row p-3">
           <img
-            src="images/randomuser1.png"
+            src={review.avatar}
             alt="randomuser"
             className="rounded-circle w-25"
           />
           <div className="col">
-            <span className="row">date of review</span>
-            <span className="row">User Name</span>
+            <span className="row">{review.date}</span>
+            <span className="row">{review.name}</span>
           </div>
           <div className="col text-end p-0">
             <i className="fa fa-thumbs-up" />
+            rating {review.rating}
           </div>
         </div>
         <div className="row">
-          <p>
-            This place is fantastic! The views are breathtaking and it's just a
-            short walk to all the shops. My family and I had an amazing
-            experience.
-          </p>
+          <p>{review.description}</p>
         </div>
       </div>
     </>
