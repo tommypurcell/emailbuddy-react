@@ -156,8 +156,13 @@ export default function Houses() {
       {/* cards */}
       <div className="container my-4">
         <div className="row g-4">
-          {/* passing houses array as a prop here. just did this for practice, but im not sure if we need to since we could just define and use houses in the component */}
-          <HouseThumbnail houses={houses} />
+          {
+            // return
+            houses.map((house, index) => (
+              // {/* #TODO add gap */}
+              <HouseThumbnail house={house} />
+            ))
+          }
         </div>
       </div>
     </>

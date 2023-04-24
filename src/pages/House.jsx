@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Nav from '../components/Nav'
+import Review from '../components/Review'
 
 let house = {
   title: 'Luxury Villa in Chaweng',
@@ -22,7 +23,7 @@ export default function House() {
   const [selectedPhoto, setSelectedPhoto] = useState(
     'url("https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png")'
   )
-  console.log(selectedPhoto)
+
   return (
     <>
       <>
@@ -196,29 +197,8 @@ export default function House() {
               <button type="button" className="btn btn-success mt-2">
                 Submit
               </button>
-              <div className="container border mt-5">
-                <div className="row p-3">
-                  <img
-                    src="images/randomuser1.png"
-                    alt="randomuser"
-                    className="rounded-circle w-25 px-3"
-                  />
-                  <div className="col">
-                    <span className="row">date of review</span>
-                    <span className="row">User Name</span>
-                  </div>
-                  <div className="col text-end p-0">
-                    <i className="fa fa-thumbs-up" />
-                  </div>
-                </div>
-                <div className="row">
-                  <p>
-                    This place is fantastic! The views are breathtaking and it's
-                    just a short walk to all the shops. My family and I had an
-                    amazing experience.
-                  </p>
-                </div>
-              </div>
+              {/* review */}
+              <Review />
             </div>
             <div className="col-4">
               <div className="border shadow rounded">

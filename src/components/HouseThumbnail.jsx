@@ -1,9 +1,9 @@
-export default function HouseThumbnail({ houses }) {
+export default function HouseThumbnail({ house }) {
   {
     // return
-    return houses.map((house, index) => (
+    return (
       // {/* #TODO add gap */}
-      <div className="col-3" key={index}>
+      <div className="col-3">
         {/* col-3 makes it so that it wraps after the 4th card */}
         {/* 1st card */}
         <div className="card">
@@ -30,6 +30,6 @@ export default function HouseThumbnail({ houses }) {
           </div>
         </div>
       </div>
-    ))
+    )
   }
 }
