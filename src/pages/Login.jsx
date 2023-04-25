@@ -24,10 +24,7 @@ export default function Login() {
 
               <div>
                 <span>
-                  New to Airbnb?{' '}
-                  <Link to="/signup">
-                    <a href="">Signup</a>
-                  </Link>
+                  New to Airbnb? <Link to="/signup">Signup</Link>
                 </span>
               </div>
             </div>

@@ -34,10 +34,7 @@ export default function SignUp() {
               </button>
               <div className="row">
                 <span>
-                  Already have an account?{' '}
-                  <Link to="/Login">
-                    <a href="">Login</a>
-                  </Link>
+                  Already have an account? <Link to="/Login">Login</Link>
                 </span>
               </div>
             </form>
