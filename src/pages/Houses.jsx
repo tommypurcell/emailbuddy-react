@@ -62,16 +62,26 @@ export default function Houses() {
 
   // this function searches the api
   function sendForm(e) {
+    e.preventDefault()
+    let obj = {}
     // #TODO add if statements to check if the form is empty i.e. value = ''
     //  if the form is empty we will not send anything to the object
 
-    e.preventDefault()
-    let obj = {}
-    obj.location = e.target.location.value
-    obj.rooms = e.target.rooms.value
-    obj.price = e.target.price.value
-    obj.sort = e.target.sort.value
-    obj.name = e.target.name.value
+    if (!e.target.location.value == '') {
+      obj.location = e.target.location.value
+    }
+    if (!e.target.rooms.value == '') {
+      obj.rooms = e.target.rooms.value
+    }
+    if (!e.target.price.value == '') {
+      obj.price = e.target.price.value
+    }
+    if (!e.target.sort.value == '') {
+      obj.sort = e.target.sort.value
+    }
+    if (!e.target.name.value == '') {
+      obj.name = e.target.name.value
+    }
 
     console.log(obj)
     // send form object to server
@@ -94,7 +104,7 @@ export default function Houses() {
                     <i className="fa-solid fa-location-dot" />
                   </span>
                   <select className="form-select" name="location">
-                    <option>Open this select menu</option>
+                    <option value="">Open this select menu</option>
                     <option>Koh Samui</option>
                     <option>Koh Phangan</option>
                     <option>Bangkok</option>
@@ -120,7 +130,7 @@ export default function Houses() {
                     <i className="fa-solid fa-dollar-sign" />
                     <input
                       name="price"
-                      type="text"
+                      type="number"
                       className="form-control"
                       placeholder="Price..."
                     />
