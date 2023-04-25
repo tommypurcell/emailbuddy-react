@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Login() {
   return (
     <>
@@ -15,12 +17,17 @@ export default function Login() {
               <input type="email" className="border rounded form-control" />
               <label>Password</label>
               <input type="password" className="border rounded form-control" />
+
               <button type="button" className="btn btn-success mt-3">
                 Login
               </button>
+
               <div>
                 <span>
-                  New to Airbnb? <a href="">Signup</a>
+                  New to Airbnb?{' '}
+                  <Link to="/signup">
+                    <a href="">Signup</a>
+                  </Link>
                 </span>
               </div>
             </div>

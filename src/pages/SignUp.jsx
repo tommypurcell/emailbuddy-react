@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function SignUp() {
   return (
     <div className="card">
@@ -32,7 +34,10 @@ export default function SignUp() {
               </button>
               <div className="row">
                 <span>
-                  Already have an account? <a href="">Login</a>
+                  Already have an account?{' '}
+                  <Link to="/Login">
+                    <a href="">Login</a>
+                  </Link>
                 </span>
               </div>
             </form>

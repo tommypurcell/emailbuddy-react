@@ -8,11 +8,7 @@ export default function Nav() {
         <div className="row align-items-center">
           <div className="col text-start p-3">
             <Link to="/">
-              <img
-                src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
-                alt="logo"
-                className="w-25"
-              />
+              <img src="./images/logo-airbnb.png" alt="logo" className="w-25" />
             </Link>
           </div>
           <div className="col text-end">

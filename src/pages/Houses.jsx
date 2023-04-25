@@ -1,5 +1,6 @@
 import HouseThumbnail from '../components/HouseThumbnail'
 import Nav from '../components/Nav'
+import { Link } from 'react-router-dom'
 
 export default function Houses() {
   // state
