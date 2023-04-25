@@ -1,4 +1,5 @@
 import Nav from '../components/Nav'
+import { Link } from 'react-router-dom'
 
 export default function Profile() {
   // object user
@@ -138,7 +139,9 @@ export default function Profile() {
           {/* column for listings */}
           <div className="col">
             <h2 className="border-bottom pb-3">My Listings</h2>
-            <button className="btn btn-success my-3">List a House</button>
+            <Link to="/HouseCreate">
+              <button className="btn btn-success my-3">List a House</button>
+            </Link>
             <div className="row g-0">
               <div className="col md-8">
                 {houses.map((house, index) => (
