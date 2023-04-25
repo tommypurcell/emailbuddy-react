@@ -64,7 +64,7 @@ export default function Houses() {
   function sendForm(e) {
     e.preventDefault()
     let obj = {}
-    // #TODO add if statements to check if the form is empty i.e. value = ''
+    // if statements to check if the form is empty i.e. value = ''
     //  if the form is empty we will not send anything to the object
 
     if (!e.target.location.value == '') {
@@ -82,6 +82,8 @@ export default function Houses() {
     if (!e.target.name.value == '') {
       obj.name = e.target.name.value
     }
+
+    // for now we can try to add obj to array and filter the array
 
     console.log(obj)
     // send form object to server
