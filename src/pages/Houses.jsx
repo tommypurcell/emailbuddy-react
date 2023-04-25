@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import HouseThumbnail from '../components/HouseThumbnail'
 import Nav from '../components/Nav'
 import { Link } from 'react-router-dom'
 
 export default function Houses() {
   // state
+  const [results, setResults] = useState([])
+  const [searchObj, setSearchObj] = useState({})
+
   // data
   // data
   let houses = [
@@ -84,7 +88,7 @@ export default function Houses() {
     }
 
     // for now we can try to add obj to array and filter the array
-
+    setSearchObj(obj)
     console.log(obj)
     // send form object to server
   }
@@ -99,7 +103,7 @@ export default function Houses() {
       <div className="bg-light py-3">
         <form onSubmit={(e) => sendForm(e)}>
           <div className="container">
-            <div className="row">
+            <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6">
               <div className="col">
                 <div className="input-group">
                   <span className="input-group-text">
@@ -130,13 +134,13 @@ export default function Houses() {
                 <div className="input-group">
                   <span className="input-group-text">
                     <i className="fa-solid fa-dollar-sign" />
-                    <input
-                      name="price"
-                      type="number"
-                      className="form-control"
-                      placeholder="Price..."
-                    />
                   </span>
+                  <input
+                    name="price"
+                    type="number"
+                    className="form-control"
+                    placeholder="Price..."
+                  />
                 </div>
               </div>
               <div className="col">
@@ -163,15 +167,15 @@ export default function Houses() {
                 </div>
               </div>
               <div className="col">
-                <button className="btn btn-success">Search</button>
+                <button className="btn btn-success w-100">Search</button>
               </div>
             </div>
           </div>
         </form>
       </div>
       {/* cards */}
-      <div className="container my-4">
-        <div className="row g-4">
+      <div className="container-flex container-lg my-4">
+        <div className="row g-4 row-cols-md-3 row-cols-lg-4">
           {
             // return
             houses.map((house, index) => (

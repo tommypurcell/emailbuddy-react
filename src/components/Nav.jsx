@@ -12,7 +12,7 @@ export default function Nav() {
             </Link>
           </div>
           <div className="col text-end">
-            <Link to="/Profile">
+            <Link to="/profile">
               <button
                 type="button"
                 className="btn btn-outline-secondary"

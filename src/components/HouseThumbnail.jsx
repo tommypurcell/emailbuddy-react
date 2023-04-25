@@ -5,10 +5,10 @@ export default function HouseThumbnail({ house, index }) {
     // return
     return (
       // {/* #TODO add gap */}
-      <div key={index} className="col-3">
+      <div key={index}>
         {/* col-3 makes it so that it wraps after the 4th card */}
         {/* 1st card */}
-        <Link to="./House" className="text-decoration-none text-black">
+        <Link to="/house" className="text-decoration-none text-black">
           <div className="card">
             <img src={house.image} className="card-img-top" alt="..." />
             <div className="card-body">

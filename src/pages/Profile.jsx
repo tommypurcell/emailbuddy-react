@@ -139,7 +139,7 @@ export default function Profile() {
           {/* column for listings */}
           <div className="col">
             <h2 className="border-bottom pb-3">My Listings</h2>
-            <Link to="/HouseCreate">
+            <Link to="/house-create">
               <button className="btn btn-success my-3">List a House</button>
             </Link>
             <div className="row g-0">
@@ -162,12 +162,12 @@ export default function Profile() {
                               {house.rooms} rooms - ${house.price}/night
                             </span>
                             <p className="card-text">{house.description}</p>
-                            <Link to="/HouseEdit">
+                            <Link to="/house-edit">
                               <button className="btn btn-outline-secondary">
                                 Edit
                               </button>
                             </Link>
-                            <Link to="/House">
+                            <Link to="/house">
                               <button className="btn btn-outline-success">
                                 View
                               </button>
