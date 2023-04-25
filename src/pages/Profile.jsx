@@ -165,9 +165,11 @@ export default function Profile() {
                             <button className="btn btn-outline-secondary">
                               Edit
                             </button>
-                            <button className="btn btn-outline-success">
-                              View
-                            </button>
+                            <Link to="/House">
+                              <button className="btn btn-outline-success">
+                                View
+                              </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
