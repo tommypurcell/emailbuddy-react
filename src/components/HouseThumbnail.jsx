@@ -1,9 +1,9 @@
-export default function HouseThumbnail({ house }) {
+export default function HouseThumbnail({ house, index }) {
   {
     // return
     return (
       // {/* #TODO add gap */}
-      <div className="col-3">
+      <div key={index} className="col-3">
         {/* col-3 makes it so that it wraps after the 4th card */}
         {/* 1st card */}
         <div className="card">

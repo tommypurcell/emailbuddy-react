@@ -159,7 +159,7 @@ export default function Houses() {
             // return
             houses.map((house, index) => (
               // {/* #TODO add gap */}
-              <HouseThumbnail house={house} />
+              <HouseThumbnail house={house} key={index} />
             ))
           }
         </div>
