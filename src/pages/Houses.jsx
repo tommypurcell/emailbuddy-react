@@ -60,7 +60,11 @@ export default function Houses() {
   ]
   // function
 
+  // this function searches the api
   function sendForm(e) {
+    // #TODO add if statements to check if the form is empty i.e. value = ''
+    //  if the form is empty we will not send anything to the object
+
     e.preventDefault()
     let obj = {}
     obj.location = e.target.location.value

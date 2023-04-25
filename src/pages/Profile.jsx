@@ -162,9 +162,11 @@ export default function Profile() {
                               {house.rooms} rooms - ${house.price}/night
                             </span>
                             <p className="card-text">{house.description}</p>
-                            <button className="btn btn-outline-secondary">
-                              Edit
-                            </button>
+                            <Link to="/HouseEdit">
+                              <button className="btn btn-outline-secondary">
+                                Edit
+                              </button>
+                            </Link>
                             <Link to="/House">
                               <button className="btn btn-outline-success">
                                 View

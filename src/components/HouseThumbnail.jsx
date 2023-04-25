@@ -8,7 +8,7 @@ export default function HouseThumbnail({ house, index }) {
       <div key={index} className="col-3">
         {/* col-3 makes it so that it wraps after the 4th card */}
         {/* 1st card */}
-        <Link to="./House">
+        <Link to="./House" className="text-decoration-none text-black">
           <div className="card">
             <img src={house.image} className="card-img-top" alt="..." />
             <div className="card-body">
