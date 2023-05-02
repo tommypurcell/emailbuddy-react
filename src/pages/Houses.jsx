@@ -174,7 +174,7 @@ export default function Houses() {
         </form>
       </div>
       {/* cards */}
-      <div className="container-flex container-lg my-4">
+      <div className="container-flex container-xl my-4">
         <div className="row g-4 row-cols-md-3 row-cols-lg-4">
           {
             // return
