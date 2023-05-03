@@ -1,6 +1,19 @@
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+axios.defaults.withCredentials = true
 
 export default function Nav() {
+  const navigate = useNavigate()
+
+  const requestLogout = async (e) => {
+    e.preventDefault()
+    let userToLogout = await axios.get('http://localhost:4000/logout')
+    console.log(userToLogout.data)
+    navigate('/login')
+  }
+
   return (
     <>
       {/* nav bar */}
@@ -28,7 +41,8 @@ export default function Nav() {
               </button>
             </Link>
             <a
-              type="button"
+              onClick={(e) => requestLogout(e)}
+              type="submit"
               className="btn btn-outline-secondary"
               style={{ height: 44 }}
             >

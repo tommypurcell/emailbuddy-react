@@ -7,6 +7,7 @@ axios.defaults.withCredentials = true
 export default function SignUp() {
   const navigate = useNavigate()
   const [errorMsg, setErrorMsg] = useState('')
+
   // access api
   const makeAccount = async (e) => {
     e.preventDefault()
