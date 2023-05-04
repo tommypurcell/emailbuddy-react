@@ -1,12 +1,18 @@
 import Nav from '../components/Nav'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+axios.defaults.withCredentials = true
 
 export default function HouseCreate() {
   // data
   let houseListings = []
 
   // function to save form into object
-  function saveListing(e) {
+  const saveListing = async (e) => {
     e.preventDefault()
+
     let obj = {}
     let photoArr = []
 
@@ -40,16 +46,29 @@ export default function HouseCreate() {
       photoArr.push(e.target.photo9.value)
     }
 
-    // save data in obj
-    obj.title = e.target.title.value
-    obj.description = e.target.description.value
-    obj.numberOfRooms = e.target.numberOfRooms.value
-    obj.location = e.target.location.value
-    obj.price = e.target.price.value
-    obj.photos = photoArr
+    let newListing = await axios.post('http://localhost:4000/houses', {
+      // this host id will be changed later in the api but is just a placehodler now
+      // #TODO  not the best way here because if the user with this id doesnt exist in the db it wont work
 
-    // lastly add obj to houseListings array of house listing objects
-    houseListings.push(obj)
+      description: e.target.description.value,
+      title: e.target.title.value,
+      rooms: e.target.numberOfRooms.value,
+      location: e.target.location.value,
+      price: e.target.price.value,
+      photos: photoArr,
+    })
+    console.log(newListing.data)
+
+    // // save data in obj
+    // obj.title = e.target.title.value
+    // obj.description = e.target.description.value
+    // obj.numberOfRooms = e.target.numberOfRooms.value
+    // obj.location = e.target.location.value
+    // obj.price = e.target.price.value
+    // obj.photos = photoArr
+
+    // // lastly add obj to houseListings array of house listing objects
+    // houseListings.push(obj)
   }
 
   // return
