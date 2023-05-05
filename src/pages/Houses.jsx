@@ -9,9 +9,9 @@ export default function Houses() {
   const [searchObj, setSearchObj] = useState({})
 
   // data
-  // data
   let houses = [
     {
+      _id: '64537a475c51a524cbb2a079',
       image:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2002/house_02_01.png',
       title: 'Luxury Villa in Chaweng',
@@ -22,6 +22,7 @@ export default function Houses() {
       score: 8,
     },
     {
+      _id: 'alksjdlkfjlskjflksjdklfjslkdf',
       image:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2003/house_03_01.png',
       title: 'Private Villa Lotus 1',
@@ -32,6 +33,7 @@ export default function Houses() {
       score: 8,
     },
     {
+      _id: 'alksjdlkfjlskjflksjdklfjslkdf',
       image:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2004/house_04_01.png',
       title: 'Mountain Villa',
@@ -42,6 +44,7 @@ export default function Houses() {
       score: 7,
     },
     {
+      _id: 'alksjdlkfjlskjflksjdklfjslkdf',
       image:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
       title: 'Pool Villa',
@@ -52,6 +55,7 @@ export default function Houses() {
       score: 0,
     },
     {
+      _id: 'alksjdlkfjlskjflksjdklfjslkdf11111  ',
       image:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
       title: 'Pool Villa',

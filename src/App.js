@@ -10,13 +10,14 @@ import HouseEdit from './pages/HouseEdit'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import React from 'react'
+import HouseThumbnail from './components/HouseThumbnail'
 function App() {
   return (
     // Router
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Houses />} />
-        <Route path="/house" element={<House />} />
+        <Route path="/house/:id" element={<House />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<SignUp />} />

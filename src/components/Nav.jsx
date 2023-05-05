@@ -21,7 +21,7 @@ export default function Nav() {
         <div className="row align-items-center">
           <div className="col text-start p-3">
             <Link to="/">
-              <img src="./images/logo-airbnb.png" alt="logo" className="w-25" />
+              <img src="/images/logo-airbnb.png" alt="logo" className="w-25" />
             </Link>
           </div>
           <div className="col text-end">
@@ -32,7 +32,7 @@ export default function Nav() {
                 style={{ alignItems: 'center' }}
               >
                 <img
-                  src="images/randomuser1.png"
+                  src="/images/randomuser1.png"
                   alt="user"
                   className="rounded-circle w-25"
                   style={{ height: 30 }}

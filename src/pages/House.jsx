@@ -1,24 +1,48 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import Review from '../components/Review'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 export default function House() {
-  // data
-  let house = {
-    title: 'Luxury Villa in Chaweng',
-    description:
-      'Description: ho hoh ho Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjsksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsldflksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks sdfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjsfksjldfjsljflksjlksdjf fkjs',
-    price: 350,
-    booking: false,
-    location: 'Koh Samui',
-    rooms: 4,
-    rating: 1,
-    photos: [
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-    ],
-    host: { name: 'Tommy', avatar: 'images/randomuser1.png' },
+  const { id } = useParams()
+
+  // need to add host and name because it will render jsx first before house gets set
+  //
+  const [house, setHouse] = useState({
+    host: {},
+  })
+
+  const getHouse = async () => {
+    try {
+      let result = await axios.get(`http://localhost:4000/houses/${id}`)
+      console.log('result.data', result.data)
+      setHouse(result.data)
+      console.log(house.host.name)
+    } catch (err) {
+      console.log(err)
+    }
   }
+
+  console.log(house)
+  // data
+
+  // let house = {
+  //   _id: '645330cbf4201b0820e1a2bf',
+  //   title: 'Luxury Villa in Chaweng',
+  //   description:
+  //     'Description: ho hoh ho Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjsksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsldflksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks sdfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjsfksjldfjsljflksjlksdjf fkjs',
+  //   price: 350,
+  //   booking: false,
+  //   location: 'Koh Samui',
+  //   rooms: 4,
+  //   rating: 1,
+  //   photos: [
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+  //   ],
+  //   host: { name: 'Tommy', avatar: '/images/randomuser1.png' },
+  // }
 
   let reviewObj = {
     name: 'Tom',
@@ -57,6 +81,11 @@ export default function House() {
     console.log(newReview)
     console.log(reviews)
   }
+
+  useEffect(() => {
+    getHouse()
+  }, [])
+
   return (
     <>
       <Nav />
