@@ -12,7 +12,7 @@ export default function HouseThumbnail({ house, index }) {
         className="text-decoration-none text-black"
       >
         <div className="card">
-          <img src={house.image} className="card-img-top" alt="..." />
+          <img src={house.photos[0]} className="card-img-top" alt="..." />
           <div className="card-body">
             <p className="card-text"></p>
             <div className="container p-0">
