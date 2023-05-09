@@ -58,6 +58,7 @@ export default function HouseCreate() {
       photos: photoArr,
     })
     console.log(newListing.data)
+    Navigate('/')
 
     // // save data in obj
     // obj.title = e.target.title.value

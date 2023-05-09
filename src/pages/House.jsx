@@ -82,8 +82,37 @@ export default function House() {
     console.log(reviews)
   }
 
+  // send Bookings
+  const sendBooking = async (e) => {
+    e.preventDefault()
+
+    let newBooking = await axios.post('http://localhost:4000/bookings', {
+      description: e.target.description.value,
+      house: id,
+    })
+
+    // show thank you message when form is submitted
+    setbookingRequest(true)
+  }
+
+  // get booking to decide if we should show the message or not
+  const getBooking = async (e) => {
+    let newBooking = await axios.get('http://localhost:4000/bookings', {
+      params: {
+        house: id,
+      },
+    })
+
+    // check if house has already been booked by this user and add thank you message if it has
+    if (newBooking.data.length != 0) {
+      setbookingRequest(true)
+    }
+    console.log('new booking', newBooking.data)
+  }
+
   useEffect(() => {
     getHouse()
+    getBooking()
   }, [])
 
   return (
@@ -290,8 +319,9 @@ export default function House() {
                     add date
                   </div>
                 ) : (
-                  <form onSubmit={() => setbookingRequest(true)}>
+                  <form onSubmit={(e) => sendBooking(e)}>
                     <textarea
+                      name="description"
                       className="form-control"
                       placeholder="Send the host a message..."
                       id="floatingTextarea2"
