@@ -1,18 +1,30 @@
+// Packages
 import { useEffect, useState } from 'react'
-import Nav from '../components/Nav'
-import Review from '../components/Review'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-export default function House() {
-  const { id } = useParams()
+// Import Components
+import Nav from '../components/Nav'
+import Reviews from '../components/Reviews'
+import ReviewCreate from '../components/ReviewCreate'
 
-  // need to add host and name because it will render jsx first before house gets set
-  //
+// Component
+export default function House() {
+  // States
+  const { id } = useParams()
+  const [selectedPhoto, setSelectedPhoto] = useState(
+    'url("https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png")'
+  )
+
+  const [reviewMade, setReviewMade] = useState(false)
+  const [bookingRequest, setbookingRequest] = useState(false)
   const [house, setHouse] = useState({
     host: {},
   })
 
+  // need to add host and name because it will render jsx first before house gets set
+
+  // Methods
   const getHouse = async () => {
     try {
       let result = await axios.get(`http://localhost:4000/houses/${id}`)
@@ -24,62 +36,14 @@ export default function House() {
     }
   }
 
-  console.log(house)
-  // data
-
-  // let house = {
-  //   _id: '645330cbf4201b0820e1a2bf',
-  //   title: 'Luxury Villa in Chaweng',
-  //   description:
-  //     'Description: ho hoh ho Pargraph goes here dah adha aksjdlf asdklfja sdf skldfjsksdjfsldf jsdelivrsldfjslksdjfl sldkjfls skjlsdjf sdkfjsldflksdjflksjdlkfjsdlkfjlksdjflkdjs dslkjf lksdjf ksjfljlksdlfks sdfksjldkfjlskjflkdsj sjdkfjs lkdfjlskdjfkl sd slkjdflksj flkjsfksjldfjsljflksjlksdjf fkjs',
-  //   price: 350,
-  //   booking: false,
-  //   location: 'Koh Samui',
-  //   rooms: 4,
-  //   rating: 1,
-  //   photos: [
-  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-  //   ],
-  //   host: { name: 'Tommy', avatar: '/images/randomuser1.png' },
-  // }
-
-  let reviewObj = {
-    name: 'Tom',
-    avatar: '/images/randomuser1.png',
-    date: '4/24/2023',
-  }
-
-  // state
-  const [selectedPhoto, setSelectedPhoto] = useState(
-    'url("https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png")'
-  )
-  const [reviews, setReviews] = useState([])
-  const [reviewMade, setReviewMade] = useState(false)
-  const [bookingRequest, setbookingRequest] = useState(false)
-
-  // functions
-
-  // update reviewObj rating based on which thumbs up button is clicked
-  function setRating(num) {
-    reviewObj.rating = num
-  }
-
-  // update reviewObj description as it is typed in the text area
-  function setDescription(str) {
-    reviewObj.description = str
-  }
-
-  // on submitting the review form add review to list of reviews array
-  function addReview(e) {
+  const makeReview = async (e) => {
     e.preventDefault()
-
-    let newReview = [...reviews]
-    newReview.push(reviewObj)
-    setReviews(newReview)
+    console.log(e.target.description.value)
+    let newReview = await axios.post('http://localhost:4000/reviews', {
+      description: e.target.description.value,
+      house: id,
+    })
     setReviewMade(true)
-    console.log(newReview)
-    console.log(reviews)
   }
 
   // send Bookings
@@ -96,7 +60,7 @@ export default function House() {
   }
 
   // get booking to decide if we should show the message or not
-  const getBooking = async (e) => {
+  const getBooking = async () => {
     let newBooking = await axios.get('http://localhost:4000/bookings', {
       params: {
         house: id,
@@ -110,11 +74,13 @@ export default function House() {
     console.log('new booking', newBooking.data)
   }
 
+  // Hooks
   useEffect(() => {
     getHouse()
     getBooking()
   }, [])
 
+  // JSX
   return (
     <>
       <Nav />
@@ -261,50 +227,16 @@ export default function House() {
             <h3>0 Reviews</h3>
             <div className="mb-3"></div>
             {!reviewMade ? (
-              <form onSubmit={(e) => addReview(e)}>
-                <label
-                  htmlFor="exampleFormControlTextarea1"
-                  className="form-label"
-                >
-                  Example textarea
-                </label>
-                <textarea
-                  name="description"
-                  className="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows={3}
-                  defaultValue={''}
-                  onKeyUp={(e) => setDescription(e.target.value)}
-                />
-                <div>
-                  <button
-                    type="button"
-                    className="btn btn-outline-success"
-                    onClick={() => setRating(1)}
-                  >
-                    <i className="fa fa-thumbs-up" />
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-warning border"
-                    onClick={() => setRating(-1)}
-                  >
-                    <i className="fa fa-thumbs-down" />
-                  </button>
-                </div>
-                <button type="submit" className="btn btn-success mt-2">
-                  Leave a Review
-                </button>
-              </form>
+              <ReviewCreate makeReview={makeReview} />
             ) : (
-              <div class="alert alert-success" role="alert">
-                <h4>Thank you for your Review!</h4>
+              <div>
+                <div className="alert alert-success" role="alert">
+                  <h4>Thank you for your Review!</h4>
+                </div>
               </div>
             )}
             {/* review */}
-            {reviews.map((review, index) => (
-              <Review review={review} key={index} />
-            ))}
+            <Reviews id={id} />
           </div>
           <div className="col-4">
             <div className="border shadow rounded">
