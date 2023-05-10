@@ -113,33 +113,6 @@ export default function Houses() {
   function sendForm(e) {
     e.preventDefault()
     searchHouses()
-
-    // getHouses()
-
-    // let obj = {}
-    // // if statements to check if the form is empty i.e. value = ''
-    // //  if the form is empty we will not send anything to the object
-
-    // if (!e.target.location.value == '') {
-    //   obj.location = e.target.location.value
-    // }
-    // if (!e.target.rooms.value == '') {
-    //   obj.rooms = e.target.rooms.value
-    // }
-    // if (!e.target.price.value == '') {
-    //   obj.price = e.target.price.value
-    // }
-    // if (!e.target.sort.value == '') {
-    //   obj.sort = e.target.sort.value
-    // }
-    // if (!e.target.name.value == '') {
-    //   obj.name = e.target.name.value
-    // }
-
-    // // for now we can try to add obj to array and filter the array
-    // setSearchObj(obj)
-    // console.log(obj)
-    // send form object to server
   }
 
   // return

@@ -1,87 +1,150 @@
 import Nav from '../components/Nav'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import axios from 'axios'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile() {
-  // object user
-  let user = {
-    name: 'tommy',
-    email: 'tommy@tommy.com',
-    avatar: 'images/randomuser1.png',
-  }
-  // data
+  // create state variable for user
+  const [user, setUser] = useState({})
+
+  // define houses
+  const [houses, setHouses] = useState([])
+
+  // navigate
+  const navigate = useNavigate()
 
   // houses array
-  let houses = [
-    {
-      image:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2002/house_02_01.png',
-      title: 'Luxury Villa in Chaweng',
-      price: 350,
-      description:
-        'This is a stylish house that has everything you need on your vacation.',
-      location: 'Koh Samui',
-      rooms: 3,
-      reviews: 2,
-      score: 8,
-    },
-    {
-      image:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2003/house_03_01.png',
-      title: 'Private Villa Lotus 1',
-      price: 150,
-      description:
-        'This is a stylish house that has everything you need on your vacation.',
-      location: 'Koh Phangan',
-      rooms: 2,
-      reviews: 1,
-      score: 8,
-    },
-    {
-      image:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2004/house_04_01.png',
-      title: 'Mountain Villa',
-      price: 200,
-      description:
-        'This is a stylish house that has everything you need on your vacation.',
-      location: 'Koh Phangan',
-      rooms: 4,
-      reviews: 6,
-      score: 7,
-    },
-    {
-      image:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
-      title: 'Pool Villa',
-      price: 100,
-      description:
-        'This is a stylish house that has everything you need on your vacation.',
-      location: 'Koh Phangan',
-      rooms: 3,
-      reviews: 0,
-      score: 0,
-    },
-    {
-      image:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
-      title: 'Pool Villa',
-      price: 100,
-      description:
-        'This is a stylish house that has everything you need on your vacation.',
-      location: 'Koh Phangan',
-      rooms: 3,
-      reviews: 0,
-      score: 0,
-    },
-  ]
 
-  // function that runs when form is submitted updates object data
-  function submitProfile(e) {
-    e.preventDefault()
-    user.name = e.target.name.value
-    user.email = e.target.email.value
-    user.avatar = e.target.avatar.value
-    console.log(user)
+  // let houses = [
+  //   {
+  //     image:
+  //       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2002/house_02_01.png',
+  //     title: 'Luxury Villa in Chaweng',
+  //     price: 350,
+  //     description:
+  //       'This is a stylish house that has everything you need on your vacation.',
+  //     location: 'Koh Samui',
+  //     rooms: 3,
+  //     reviews: 2,
+  //     score: 8,
+  //   },
+  //   {
+  //     image:
+  //       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2003/house_03_01.png',
+  //     title: 'Private Villa Lotus 1',
+  //     price: 150,
+  //     description:
+  //       'This is a stylish house that has everything you need on your vacation.',
+  //     location: 'Koh Phangan',
+  //     rooms: 2,
+  //     reviews: 1,
+  //     score: 8,
+  //   },
+  //   {
+  //     image:
+  //       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2004/house_04_01.png',
+  //     title: 'Mountain Villa',
+  //     price: 200,
+  //     description:
+  //       'This is a stylish house that has everything you need on your vacation.',
+  //     location: 'Koh Phangan',
+  //     rooms: 4,
+  //     reviews: 6,
+  //     score: 7,
+  //   },
+  //   {
+  //     image:
+  //       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
+  //     title: 'Pool Villa',
+  //     price: 100,
+  //     description:
+  //       'This is a stylish house that has everything you need on your vacation.',
+  //     location: 'Koh Phangan',
+  //     rooms: 3,
+  //     reviews: 0,
+  //     score: 0,
+  //   },
+  //   {
+  //     image:
+  //       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295027/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2005/house_05_01.png',
+  //     title: 'Pool Villa',
+  //     price: 100,
+  //     description:
+  //       'This is a stylish house that has everything you need on your vacation.',
+  //     location: 'Koh Phangan',
+  //     rooms: 3,
+  //     reviews: 0,
+  //     score: 0,
+  //   },
+  // ]
+  // GET request to /houses passing the user _id as the host in the query string
+
+  const getHouses = async () => {
+    try {
+      let response = await axios.get(
+        `http://localhost:4000/houses?host=${user._id}`
+      )
+      console.log(response.data)
+      // set the houses state variable to the response data
+      setHouses(response.data)
+      return response.data
+    } catch (err) {
+      console.log(err)
+    }
   }
+
+  // function that runs when page loads and performs GET request to /profile
+  const getProfile = async () => {
+    try {
+      let userProfile = await axios.get(`http://localhost:4000/profile`)
+
+      setUser(userProfile.data)
+      return userProfile
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // function that runs when form is submitted and sends PATCH request to /profile
+  const submitProfile = async (e) => {
+    e.preventDefault()
+    try {
+      // check that the form fields are not empty before sending PATCH request
+      if (e.target.name.value === '') {
+        alert('Please enter your name')
+        return
+      }
+      if (e.target.email.value === '') {
+        alert('Please enter your email')
+        return
+      }
+      if (e.target.avatar.value === '') {
+        alert('Please enter your avatar')
+        return
+      }
+      // send PATCH request to /profile
+      let response = await axios.patch(`http://localhost:4000/profile`, {
+        name: e.target.name.value,
+        email: e.target.email.value,
+        avatar: e.target.avatar.value,
+      })
+      // refresh page
+      window
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    // perform GET request to /pofile as soon as page loads
+    // use the data to fill out the form
+    getProfile()
+
+    // perform GET request to /houses as soon as page loads
+    getHouses()
+  }, [])
 
   return (
     <>
@@ -123,7 +186,7 @@ export default function Profile() {
               </div>
               <div className="">
                 <input
-                  type="url"
+                  type="text"
                   name="avatar"
                   placeholder={user.avatar}
                   className="my-3 form-control"
@@ -150,7 +213,7 @@ export default function Profile() {
                       <div className="row">
                         <div className="col">
                           <img
-                            src={house.image}
+                            src={house.photos[0]}
                             className="img-fluid rounded-start"
                             alt="..."
                           />
