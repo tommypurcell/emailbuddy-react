@@ -16,7 +16,7 @@ Here are some screenshots showcasing different sections of the Airbnb Clone:
 
 ### Home Page
 
-![Home Page](./screenshots/home.png)
+![Home Page](./public/images/home.png)
 
 The home page provides an overview of available listings and a search feature to filter results.
 
@@ -26,18 +26,6 @@ The home page provides an overview of available listings and a search feature to
 
 Users can sign up and log in to access additional features, such as managing their own listings and leaving reviews.
 
-### Listing Details
-
-![Listing Details](./screenshots/listing.png)
-
-Detailed information about a listing is displayed, including photos, description, pricing, and availability.
-
-### Listing Management
-
-![Listing Management](./screenshots/management.png)
-
-Authenticated users can manage their own listings, including adding photos, updating details, and setting availability.
-
 ### Reviews
 
 ![Reviews](./screenshots/reviews.png)
@@ -46,9 +34,13 @@ Authenticated users can leave reviews and ratings for listings they have booked.
 
 ### User Dashboard
 
-![User Dashboard](./screenshots/dashboard.png)
+![User Dashboard](./public/images/dashboard.png)
 
 Authenticated users have access to a personalized dashboard, where they can view their bookings and manage their profile.
+
+## User Login
+
+![User Login](./public/images/login.png)
 
 ## Technologies Used
 

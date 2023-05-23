@@ -63,7 +63,7 @@ export default function Nav() {
             ) : (
               <a
                 href="/login"
-                class="btn btn-outline-secondary"
+                className="btn btn-outline-secondary"
                 style={{ height: 44, marginLeft: 5 }}
               >
                 Login
