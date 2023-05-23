@@ -21,3 +21,9 @@ code {
   height: 30vh;
   object-fit: cover;
 }
+
+/* set cards to be same height and not uneven */
+
+.card-body {
+  height: 20vh;
+}
