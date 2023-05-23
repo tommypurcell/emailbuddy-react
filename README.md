@@ -22,13 +22,14 @@ The home page provides an overview of available listings and a search feature to
 
 ### User Authentication
 
-![User Authentication](./screenshots/auth.png)
+![User Login](./public/images/login.png)
 
 Users can sign up and log in to access additional features, such as managing their own listings and leaving reviews.
 
 ### Reviews
 
-![Reviews](./screenshots/reviews.png)
+![Reviews](./public/images/reviews2.png)
+![Reviews](./public/images/reviews1.png)
 
 Authenticated users can leave reviews and ratings for listings they have booked.
 
@@ -37,10 +38,6 @@ Authenticated users can leave reviews and ratings for listings they have booked.
 ![User Dashboard](./public/images/dashboard.png)
 
 Authenticated users have access to a personalized dashboard, where they can view their bookings and manage their profile.
-
-## User Login
-
-![User Login](./public/images/login.png)
 
 ## Technologies Used
 
