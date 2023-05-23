@@ -22,8 +22,6 @@ export default function House() {
     host: {},
   })
 
-  // need to add host and name because it will render jsx first before house gets set
-
   // Methods
   const getHouse = async () => {
     try {
@@ -92,9 +90,7 @@ export default function House() {
               backgroundSize: 'cover',
             }}
             className="col"
-          >
-            {/* <img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png" class="img-thumbnail" alt="image"> */}
-          </div>
+          ></div>
           <div className="col">
             <div className="container">
               <div className="row">

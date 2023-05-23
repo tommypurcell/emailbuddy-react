@@ -244,11 +244,6 @@ export default function Profile() {
               </div>
             </div>
           </div>
-          {/* <div class="col">
-    <div class="row"><h2>My Listings</h2></div>
-    
-    <div class="row"><input type="url" placeholder="You dont have houses listed"></div>
-  </div> */}
         </div>
       </div>
     </>

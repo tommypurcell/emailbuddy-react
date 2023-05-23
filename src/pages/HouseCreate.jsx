@@ -46,10 +46,8 @@ export default function HouseCreate() {
       photoArr.push(e.target.photo9.value)
     }
 
+    // save form data into object and send post request to houses route
     let newListing = await axios.post('http://localhost:4000/houses', {
-      // this host id will be changed later in the api but is just a placehodler now
-      // #TODO  not the best way here because if the user with this id doesnt exist in the db it wont work
-
       description: e.target.description.value,
       title: e.target.title.value,
       rooms: e.target.numberOfRooms.value,
@@ -59,17 +57,6 @@ export default function HouseCreate() {
     })
     console.log(newListing.data)
     Navigate('/')
-
-    // // save data in obj
-    // obj.title = e.target.title.value
-    // obj.description = e.target.description.value
-    // obj.numberOfRooms = e.target.numberOfRooms.value
-    // obj.location = e.target.location.value
-    // obj.price = e.target.price.value
-    // obj.photos = photoArr
-
-    // // lastly add obj to houseListings array of house listing objects
-    // houseListings.push(obj)
   }
 
   // return
