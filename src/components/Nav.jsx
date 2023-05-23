@@ -7,6 +7,16 @@ axios.defaults.withCredentials = true
 export default function Nav() {
   const navigate = useNavigate()
 
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  // check if user is logged in
+  const checkLogin = async () => {
+    let user = await axios.get('http://localhost:4000/profile')
+    console.log(user.data.isLoggedIn)
+    setLoggedIn(user.data.isLoggedIn)
+  }
+  checkLogin()
+
   const requestLogout = async (e) => {
     e.preventDefault()
     let userToLogout = await axios.get('http://localhost:4000/logout')
@@ -40,15 +50,25 @@ export default function Nav() {
                 User Name
               </button>
             </Link>
-            <a
-              onClick={(e) => requestLogout(e)}
-              type="submit"
-              className="btn btn-outline-secondary"
-              style={{ height: 44 }}
-            >
-              Logout
-            </a>
-            {/* <button type="button" class="btn btn-outline-secondary">Login</button> */}
+            {/* check if user is logged in and change button accordingly */}
+            {loggedIn ? (
+              <a
+                onClick={(e) => requestLogout(e)}
+                type="submit"
+                className="btn btn-outline-secondary"
+                style={{ height: 44, marginLeft: 5 }}
+              >
+                Logout
+              </a>
+            ) : (
+              <a
+                href="/login"
+                class="btn btn-outline-secondary"
+                style={{ height: 44, marginLeft: 5 }}
+              >
+                Login
+              </a>
+            )}
           </div>
         </div>
       </nav>
