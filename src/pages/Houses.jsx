@@ -29,7 +29,14 @@ export default function Houses() {
       console.log(err)
     }
   }
-
+  /**
+   * @description Update search algorithm for location-based searches
+   *
+   * The current implementation of the search algorithm in the project performs a basic text-based search for house queries. The search criteria requires an exact match. However, this can result in inaccurate or incomplete results, especially when dealing with ambiguous or misspelled location names. To improve the search functionality, we can integrate a geocoding service (such as Google Maps Geocoding API) to convert user input into latitude and longitude coordinates. Then, we can calculate the distance between the property locations and the user's specified location using the Haversine formula. By incorporating this enhancement, we can provide more precise and relevant search results, enhancing the overall user experience.
+   *
+   * @issue  #1
+   * @author Tommy Purcell
+   */
   const searchHouses = async (e) => {
     e.preventDefault()
     try {
