@@ -28,48 +28,34 @@ export default function Nav() {
     <>
       {/* nav bar */}
       <nav className="logo-bar container">
-        <div className="row align-items-center">
-          <div className="col text-start p-3">
-            <Link to="/">
-              <img src="/images/logo-airbnb.png" alt="logo" className="w-25" />
-            </Link>
-          </div>
-          <div className="col text-end">
-            <Link to="/profile">
-              <button
-                type="button"
-                className="btn btn-outline-secondary"
-                style={{ alignItems: 'center' }}
-              >
-                <img
-                  src="/images/randomuser1.png"
-                  alt="user"
-                  className="rounded-circle w-25"
-                  style={{ height: 30 }}
-                />
-                User Name
-              </button>
-            </Link>
-            {/* check if user is logged in and change button accordingly */}
-            {loggedIn ? (
-              <a
-                onClick={(e) => requestLogout(e)}
-                type="submit"
-                className="btn btn-outline-secondary"
-                style={{ height: 44, marginLeft: 5 }}
-              >
-                Logout
-              </a>
-            ) : (
-              <a
-                href="/login"
-                className="btn btn-outline-secondary"
-                style={{ height: 44, marginLeft: 5 }}
-              >
-                Login
-              </a>
-            )}
-          </div>
+        <div className="nav-div">
+          <Link to="/calorie-counter" className="m-2">
+            Calorie Counter
+          </Link>
+          <Link to="/" className="m-2">
+            Meal Plan Generator
+          </Link>
+
+          {/* <Link to="/profile">Profile</Link> */}
+          {/* check if user is logged in and change button accordingly */}
+          {/* {loggedIn ? (
+            <a
+              onClick={(e) => requestLogout(e)}
+              type="submit"
+              className="btn btn-outline-secondary"
+              style={{ height: 44, marginLeft: 5 }}
+            >
+              Logout
+            </a>
+          ) : (
+            <a
+              href="/login"
+              className="btn btn-outline-secondary"
+              style={{ height: 44, marginLeft: 5 }}
+            >
+              Login
+            </a>
+          )} */}
         </div>
       </nav>
     </>
