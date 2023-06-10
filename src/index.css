@@ -8,6 +8,18 @@ body {
   background-color: #f8f6f4;
 }
 
+.plus-minus {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.action-button {
+  user-select: none;
+}
+
 .MealPlanGenerator {
   display: flex;
   align-items: center;

@@ -47,6 +47,18 @@ export default function CalorieCounter() {
     setTotalCalories(totalCalories - foodLog[indexToRemove].calories)
   }
 
+  const addCalories = (indexToAdd) => {
+    // add calories to total
+    setTotalCalories(totalCalories + 10)
+    foodLog[indexToAdd].calories = foodLog[indexToAdd].calories + 10
+  }
+
+  const subtractCalories = (indexToSubtract) => {
+    // subtract calories from total
+    setTotalCalories(totalCalories - 10)
+    foodLog[indexToSubtract].calories = foodLog[indexToSubtract].calories - 10
+  }
+
   return (
     <>
       <Nav />
@@ -67,7 +79,21 @@ export default function CalorieCounter() {
             <div key={index}>
               <article>
                 <p>Name: {item.name}</p>
-                <p>Calories: {item.calories}</p>
+                <p>Calories: {item.calories} </p>
+                <div className="plus-minus">
+                  <a
+                    class="action-button"
+                    onClick={() => subtractCalories(index)}
+                  >
+                    - 10
+                  </a>
+                  <a
+                    class="action-button shadow animate red"
+                    onClick={() => addCalories(index)}
+                  >
+                    + 10
+                  </a>
+                </div>
                 <button
                   className="removeFood"
                   onClick={() => removeFoodItem(index)}
