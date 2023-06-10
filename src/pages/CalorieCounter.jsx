@@ -47,16 +47,17 @@ export default function CalorieCounter() {
     setTotalCalories(totalCalories - foodLog[indexToRemove].calories)
   }
 
-  const addCalories = (indexToAdd) => {
+  const addCalories = (indexToAdd, amount) => {
     // add calories to total
-    setTotalCalories(totalCalories + 10)
-    foodLog[indexToAdd].calories = foodLog[indexToAdd].calories + 10
+    setTotalCalories(totalCalories + amount)
+    foodLog[indexToAdd].calories = foodLog[indexToAdd].calories + amount
   }
 
-  const subtractCalories = (indexToSubtract) => {
+  const subtractCalories = (indexToSubtract, amount) => {
     // subtract calories from total
-    setTotalCalories(totalCalories - 10)
-    foodLog[indexToSubtract].calories = foodLog[indexToSubtract].calories - 10
+    setTotalCalories(totalCalories - amount)
+    foodLog[indexToSubtract].calories =
+      foodLog[indexToSubtract].calories - amount
   }
 
   return (
@@ -83,15 +84,29 @@ export default function CalorieCounter() {
                 <div className="plus-minus">
                   <a
                     class="action-button"
-                    onClick={() => subtractCalories(index)}
+                    onClick={() => subtractCalories(index, 10)}
                   >
                     - 10
                   </a>
                   <a
                     class="action-button shadow animate red"
-                    onClick={() => addCalories(index)}
+                    onClick={() => addCalories(index, 10)}
                   >
                     + 10
+                  </a>
+                </div>
+                <div className="plus-minus">
+                  <a
+                    class="action-button"
+                    onClick={() => subtractCalories(index, 100)}
+                  >
+                    - 100
+                  </a>
+                  <a
+                    class="action-button shadow animate red"
+                    onClick={() => addCalories(index, 100)}
+                  >
+                    + 100
                   </a>
                 </div>
                 <button

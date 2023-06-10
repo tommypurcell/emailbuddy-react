@@ -18,6 +18,11 @@ body {
 
 .action-button {
   user-select: none;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0.5rem;
 }
 
 .MealPlanGenerator {
