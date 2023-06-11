@@ -3,7 +3,7 @@ import './App.css'
 import House from './pages/House'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
-
+import FoodLog from './pages/FoodLog'
 import SignUp from './pages/SignUp'
 import HouseCreate from './pages/HouseCreate'
 import HouseEdit from './pages/HouseEdit'
@@ -26,6 +26,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/house-create" element={<HouseCreate />} />
         <Route path="/house-edit" element={<HouseEdit />} />
+        <Route path="/foodlog" element={<FoodLog />} />
 
         <Route path="/calorie-counter" element={<CalorieCounter />} />
       </Routes>

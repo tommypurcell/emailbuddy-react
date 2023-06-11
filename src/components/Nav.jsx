@@ -32,6 +32,9 @@ export default function Nav() {
           <Link to="/calorie-counter" className="m-2">
             Calorie Counter
           </Link>
+          <Link to="/foodlog" className="m-2">
+            Food Log
+          </Link>
           <Link to="/" className="m-2">
             Meal Plan Generator
           </Link>

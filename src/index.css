@@ -166,3 +166,17 @@ a:hover {
     width: 100%;
   }
 }
+
+/* food log */
+
+.food-log-container {
+  text-align: left;
+}
+
+.day-of-food {
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+  padding: 25px;
+  margin: 25px;
+}
