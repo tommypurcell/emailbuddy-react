@@ -13,6 +13,12 @@ export default function CalorieCounter() {
   const [foodLog, setFoodLog] = useState([])
   const [totalCalories, setTotalCalories] = useState(0)
 
+  // set up date object
+  const date = new Date()
+  let day = date.getDate()
+  let month = date.getMonth() + 1
+  let year = date.getFullYear()
+
   const getFoodData = async (e) => {
     e.preventDefault()
     const response = await axios.get(
@@ -74,8 +80,8 @@ export default function CalorieCounter() {
             </button>
           </div>
         </form>
+        <h2>Foods eaten today {`${month}/${day}/${year}`}</h2>
         <div>
-          <h2>Food Log</h2>
           {foodLog.map((item, index) => (
             <div key={index}>
               <article>
@@ -83,13 +89,13 @@ export default function CalorieCounter() {
                 <p>Calories: {item.calories} </p>
                 <div className="plus-minus">
                   <a
-                    class="action-button"
+                    className="action-button"
                     onClick={() => subtractCalories(index, 10)}
                   >
                     - 10
                   </a>
                   <a
-                    class="action-button shadow animate red"
+                    className="action-button shadow animate red"
                     onClick={() => addCalories(index, 10)}
                   >
                     + 10
