@@ -93,7 +93,7 @@ export default function CalorieCounter() {
           </div>
         </form>
         <h2>Foods eaten today {`${month}/${day}/${year}`}</h2>
-        <div>
+        <div className="foods-container">
           {foodLog.map((item, index) => (
             <div key={index}>
               <article>
@@ -136,8 +136,10 @@ export default function CalorieCounter() {
               </article>
             </div>
           ))}
-          <button onClick={postFoodItems}>add to foodlog</button>
           <h2>Total Calories: {totalCalories}</h2>
+          <button className="send-to-foodlog" onClick={postFoodItems}>
+            add to foodlog
+          </button>
         </div>
       </main>
     </>

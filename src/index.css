@@ -141,7 +141,7 @@ a:hover {
   cursor: pointer;
 }
 
-.calorie-counter-contianer {
+.calorie-counter-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,4 +189,17 @@ a:hover {
 .food-log-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+/* calorie counter */
+
+.send-to-foodlog {
+  width: 60%;
+}
+
+.foods-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
