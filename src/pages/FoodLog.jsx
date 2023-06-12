@@ -25,31 +25,36 @@ export default function CalorieCounter() {
   const getFoods = async () => {
     const response = await axios.get('http://localhost:4000/foods')
     setFoodLog(response.data)
-    formatDate(response.data[0].date)
     console.log(response.data)
   }
 
   // delete food item from database
-  const deleteFoodItem = async (indexToDelete) => {
-    console.log(indexToDelete)
-    console.log(foodLog[indexToDelete]._id)
-    await axios.delete(
-      `http://localhost:4000/foods/${foodLog[indexToDelete]._id}`
-    )
+  const deleteFoodItem = async (dayIndex, foodIndex) => {
+    const idToDelete = foodLog[dayIndex].foods[foodIndex]._id
+    await axios.delete(`http://localhost:4000/foods/${idToDelete}`)
     getFoods()
   }
 
   const calculateCalories = () => {
     let total = 0
-    foodLog.map((item) => {
-      total += item.calories
-    })
     setTotalCalories(total)
+  }
+
+  const showObject = () => {
+    let display = ''
+    for (let key in foodLog) {
+      display += `${key}: ${foodLog[key]}`
+    }
+    return display
   }
 
   useEffect(() => {
     calculateCalories()
   }, [foodLog])
+
+  useEffect(() => {
+    getFoods()
+  }, [])
 
   return (
     <>
@@ -57,25 +62,28 @@ export default function CalorieCounter() {
       <main className="food-log-container">
         <h1>This is the food log</h1>
         <button onClick={(e) => getFoods(e)}>Get Foods</button>
-
         <div>
           <div className="day-of-food">
-            <h3>Date: {date}</h3>
-            {foodLog.map((item, index) => (
-              <div key={index}>
+            {foodLog.map((day, dayIndex) => (
+              <div key={dayIndex}>
+                <h3>Date: {day.date}</h3>
                 <section className="food-log-item">
-                  <p>Food: {item.name}</p>
-                  <p>Calories: {item.calories}</p>
-                  <div className="food-log-buttons">
-                    <button
-                      className="removeFood"
-                      onClick={() => deleteFoodItem(index)}
-                    >
-                      Remove
-                    </button>
-                    <button>+10</button>
-                    <button>-10</button>
-                  </div>
+                  {day.foods.map((food, foodIndex) => (
+                    <div key={foodIndex}>
+                      <p>Food: {food.name}</p>
+                      <p>Calories: {food.calories}</p>
+                      <div className="food-log-buttons">
+                        <button
+                          className="removeFood"
+                          onClick={() => deleteFoodItem(dayIndex, foodIndex)}
+                        >
+                          Remove
+                        </button>
+                        <button>+10</button>
+                        <button>-10</button>
+                      </div>
+                    </div>
+                  ))}
                 </section>
               </div>
             ))}
