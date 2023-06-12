@@ -7,9 +7,7 @@ import Nav from '../components/Nav'
 export default function CalorieCounter() {
   const applicationKey = '8803e138817c6dd9b43f6f0dcc52b9f1'
   const applicationID = '7b70e049'
-  const [foodItem, setFoodItem] = useState('')
   const [foodLog, setFoodLog] = useState([])
-  const [totalCalories, setTotalCalories] = useState(0)
   const [date, setDate] = useState('')
 
   // format date
@@ -33,12 +31,6 @@ export default function CalorieCounter() {
     const idToDelete = foodLog[dayIndex].foods[foodIndex]._id
     await axios.delete(`http://localhost:4000/foods/${idToDelete}`)
     getFoods()
-  }
-
-  // #TODO: calculate total calories for each day
-  const calculateCalories = () => {
-    let total = 0
-    setTotalCalories(total)
   }
 
   // add ten calories to food item when button is clicked
@@ -69,10 +61,6 @@ export default function CalorieCounter() {
     }
     return display
   }
-
-  useEffect(() => {
-    calculateCalories()
-  }, [foodLog])
 
   useEffect(() => {
     getFoods()
@@ -114,10 +102,10 @@ export default function CalorieCounter() {
                       </div>
                     </div>
                   ))}
+                  <h2>Total Calories: {day.totalCalories}</h2>
                 </section>
               </div>
             ))}
-            <h2>Total Calories: {totalCalories}</h2>
           </div>
         </div>
       </main>
