@@ -38,16 +38,18 @@ export default function CalorieCounter() {
     }
     setFoodLog([...foodLog, newFoodItem])
     setTotalCalories(totalCalories + response.data.calories)
-    postFoodItem(foodItem, response.data.calories)
   }
 
   // post food item to database
-  const postFoodItem = async (name, calories) => {
-    const response = await axios.post('http://localhost:4000/foods', {
-      name: name,
-      calories: calories,
-    })
-    console.log(response.data)
+  const postFoodItems = async () => {
+    for (let item of foodLog) {
+      const response = await axios.post('http://localhost:4000/foods', {
+        name: item.name,
+        calories: item.calories,
+      })
+      console.log(response.data)
+    }
+    setFoodLog([])
   }
 
   const handleInputChange = (e) => {
@@ -134,7 +136,7 @@ export default function CalorieCounter() {
               </article>
             </div>
           ))}
-
+          <button onClick={postFoodItems}>add to foodlog</button>
           <h2>Total Calories: {totalCalories}</h2>
         </div>
       </main>
