@@ -63,16 +63,20 @@ export default function CalorieCounter() {
             <h3>Date: {date}</h3>
             {foodLog.map((item, index) => (
               <div key={index}>
-                <article>
-                  <p>Name: {item.name}</p>
-                  <p>Calories: {item.calories} </p>
-                  <button
-                    className="removeFood"
-                    onClick={() => deleteFoodItem(index)}
-                  >
-                    Remove
-                  </button>
-                </article>
+                <section className="food-log-item">
+                  <p>Food: {item.name}</p>
+                  <p>Calories: {item.calories}</p>
+                  <div className="food-log-buttons">
+                    <button
+                      className="removeFood"
+                      onClick={() => deleteFoodItem(index)}
+                    >
+                      Remove
+                    </button>
+                    <button>+10</button>
+                    <button>-10</button>
+                  </div>
+                </section>
               </div>
             ))}
             <h2>Total Calories: {totalCalories}</h2>

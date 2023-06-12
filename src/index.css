@@ -180,3 +180,13 @@ a:hover {
   padding: 25px;
   margin: 25px;
 }
+
+.food-log-item p {
+  margin: 0;
+  border-style: solid;
+}
+
+.food-log-buttons {
+  display: flex;
+  justify-content: space-between;
+}
