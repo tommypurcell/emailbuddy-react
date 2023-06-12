@@ -35,9 +35,31 @@ export default function CalorieCounter() {
     getFoods()
   }
 
+  // #TODO: calculate total calories for each day
   const calculateCalories = () => {
     let total = 0
     setTotalCalories(total)
+  }
+
+  // add ten calories to food item when button is clicked
+  const addCalories = async (dayIndex, foodIndex) => {
+    const idToUpdate = foodLog[dayIndex].foods[foodIndex]._id
+    const caloriesToAdd = foodLog[dayIndex].foods[foodIndex].calories + 10
+    await axios.patch(`http://localhost:4000/foods`, {
+      id: idToUpdate,
+      calories: caloriesToAdd,
+    })
+    getFoods()
+  }
+  // subtract ten calories from food item when button is clicked
+  const subtractCalories = async (dayIndex, foodIndex) => {
+    const idToUpdate = foodLog[dayIndex].foods[foodIndex]._id
+    const caloriesToSubtract = foodLog[dayIndex].foods[foodIndex].calories - 10
+    await axios.patch(`http://localhost:4000/foods`, {
+      id: idToUpdate,
+      calories: caloriesToSubtract,
+    })
+    getFoods()
   }
 
   const showObject = () => {
@@ -79,8 +101,16 @@ export default function CalorieCounter() {
                         >
                           Remove
                         </button>
-                        <button>+10</button>
-                        <button>-10</button>
+                        <button
+                          onClick={() => addCalories(dayIndex, foodIndex)}
+                        >
+                          +10
+                        </button>
+                        <button
+                          onClick={() => subtractCalories(dayIndex, foodIndex)}
+                        >
+                          -10
+                        </button>
                       </div>
                     </div>
                   ))}
