@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Params } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 // trying this one using edamam instead of spoonacular
 // https://developer.edamam.com/edamam-docs-nutrition-api
@@ -38,6 +38,16 @@ export default function CalorieCounter() {
     }
     setFoodLog([...foodLog, newFoodItem])
     setTotalCalories(totalCalories + response.data.calories)
+    postFoodItem(foodItem, response.data.calories)
+  }
+
+  // post food item to database
+  const postFoodItem = async (name, calories) => {
+    const response = await axios.post('http://localhost:4000/foods', {
+      name: name,
+      calories: calories,
+    })
+    console.log(response.data)
   }
 
   const handleInputChange = (e) => {
