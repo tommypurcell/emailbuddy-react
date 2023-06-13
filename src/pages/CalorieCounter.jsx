@@ -21,7 +21,7 @@ export default function CalorieCounter() {
   let month = date.getMonth() + 1
   let year = date.getFullYear()
 
-  // set date format to match database
+  // set date format
   if (day < 10) {
     day = `0${day}`
   }
@@ -47,7 +47,7 @@ export default function CalorieCounter() {
       name: foodItem,
       calories: response.data.calories,
     }
-    setFoodLog([...foodLog, newFoodItem])
+    setFoodLog([newFoodItem, ...foodLog])
     setTotalCalories(totalCalories + response.data.calories)
   }
 
@@ -77,6 +77,7 @@ export default function CalorieCounter() {
         name: item.name,
         calories: item.calories,
         date: selectedDate,
+        timestamp: Date.now(),
       })
       console.log(response.data)
     }
@@ -129,16 +130,22 @@ export default function CalorieCounter() {
           </div>
         </form>
         <h2>
-          Foods eaten on{' '}
+          Log foods eaten on{' '}
           <select
+            className='"form-select form-select-lg mb-3"'
             value={selectedDate}
+            defaultValue={today}
             onChange={(e) => setSelectedDate(e.target.value)}
           >
-            {dates.map((item, index) => (
-              <option key={index} value={item}>
-                {formatDate(item)}
-              </option>
-            ))}
+            {dates.length === 0 ? (
+              <option value={today}>{today}</option>
+            ) : (
+              dates.map((item, index) => (
+                <option key={index} value={item}>
+                  {formatDate(item)}
+                </option>
+              ))
+            )}
           </select>
         </h2>
         <div className="foods-container">
