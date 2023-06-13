@@ -4,6 +4,12 @@ import { Params } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 
+// ***************
+// TODO
+// be able to add items to previous days
+// create user login and authentication
+// ***************
+
 export default function CalorieCounter() {
   const applicationKey = '8803e138817c6dd9b43f6f0dcc52b9f1'
   const applicationID = '7b70e049'

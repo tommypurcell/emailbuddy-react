@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import { Params } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
+
 // trying this one using edamam instead of spoonacular
 // https://developer.edamam.com/edamam-docs-nutrition-api
 
@@ -12,12 +12,23 @@ export default function CalorieCounter() {
   const [foodItem, setFoodItem] = useState('')
   const [foodLog, setFoodLog] = useState([])
   const [totalCalories, setTotalCalories] = useState(0)
+  const [selectedDate, setSelectedDate] = useState(``)
+  const [dates, setDates] = useState([])
 
   // set up date object
   const date = new Date()
   let day = date.getDate()
   let month = date.getMonth() + 1
   let year = date.getFullYear()
+
+  // set date format to match database
+  if (day < 10) {
+    day = `0${day}`
+  }
+  if (month < 10) {
+    month = `0${month}`
+  }
+  const today = `${year}-${month}-${day}`
 
   const getFoodData = async (e) => {
     e.preventDefault()
@@ -40,16 +51,37 @@ export default function CalorieCounter() {
     setTotalCalories(totalCalories + response.data.calories)
   }
 
+  // format selected date
+  const formatDate = (date) => {
+    let newDate = date.split('-')
+    let year = newDate[0]
+    let month = newDate[1]
+    let day = newDate[2]
+    return `${month}/${day}/${year}`
+  }
+
+  // get dates from database and set state
+  const getDates = async () => {
+    let datesArr = []
+    const response = await axios.get('http://localhost:4000/foods')
+    for (let item of response.data) {
+      datesArr.push(item.date)
+    }
+    setDates(datesArr)
+  }
+
   // post food item to database
   const postFoodItems = async () => {
     for (let item of foodLog) {
       const response = await axios.post('http://localhost:4000/foods', {
         name: item.name,
         calories: item.calories,
+        date: selectedDate,
       })
       console.log(response.data)
     }
     setFoodLog([])
+    setTotalCalories(0)
   }
 
   const handleInputChange = (e) => {
@@ -78,10 +110,14 @@ export default function CalorieCounter() {
       foodLog[indexToSubtract].calories - amount
   }
 
+  useEffect(() => {
+    setSelectedDate(today)
+    getDates()
+  }, [])
+
   return (
     <>
       <Nav />
-
       <main className="calorie-counter-container">
         <form onSubmit={getFoodData}>
           <span>Enter Food item</span>
@@ -92,7 +128,19 @@ export default function CalorieCounter() {
             </button>
           </div>
         </form>
-        <h2>Foods eaten today {`${month}/${day}/${year}`}</h2>
+        <h2>
+          Foods eaten on{' '}
+          <select
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          >
+            {dates.map((item, index) => (
+              <option key={index} value={item}>
+                {formatDate(item)}
+              </option>
+            ))}
+          </select>
+        </h2>
         <div className="foods-container">
           {foodLog.map((item, index) => (
             <div key={index}>
