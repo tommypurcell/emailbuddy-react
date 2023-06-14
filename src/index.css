@@ -207,3 +207,21 @@ a:hover {
 select {
   user-select: none;
 }
+
+/* login page */
+.signup-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.login-button {
+  width: 60%;
+}
+
+.login-card {
+  box-shadow: 0 4px 8px 5px rgba(77, 77, 77, 0.15);
+}
+
+.signup-card {
+  box-shadow: 0 4px 8px 5px rgba(77, 77, 77, 0.15);
+}

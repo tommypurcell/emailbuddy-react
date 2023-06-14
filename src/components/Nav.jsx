@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 axios.defaults.withCredentials = true
 
 export default function Nav() {
@@ -12,10 +12,12 @@ export default function Nav() {
   // check if user is logged in
   const checkLogin = async () => {
     let user = await axios.get('http://localhost:4000/profile')
-    console.log(user.data.isLoggedIn)
-    setLoggedIn(user.data.isLoggedIn)
+    if (user.data != 'Not authorized') {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
   }
-  checkLogin()
 
   const requestLogout = async (e) => {
     e.preventDefault()
@@ -23,6 +25,10 @@ export default function Nav() {
     console.log(userToLogout.data)
     navigate('/login')
   }
+
+  useEffect(() => {
+    checkLogin()
+  }, [])
 
   return (
     <>
@@ -38,10 +44,8 @@ export default function Nav() {
           <Link to="/" className="m-2">
             Meal Plan Generator
           </Link>
-
-          {/* <Link to="/profile">Profile</Link> */}
-          {/* check if user is logged in and change button accordingly */}
-          {/* {loggedIn ? (
+          <Link to="/profile">Profile</Link>
+          {loggedIn ? (
             <a
               onClick={(e) => requestLogout(e)}
               type="submit"
@@ -58,7 +62,7 @@ export default function Nav() {
             >
               Login
             </a>
-          )} */}
+          )}
         </div>
       </nav>
     </>

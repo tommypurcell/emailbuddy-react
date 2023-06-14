@@ -27,7 +27,6 @@ function App() {
         <Route path="/house-create" element={<HouseCreate />} />
         <Route path="/house-edit" element={<HouseEdit />} />
         <Route path="/foodlog" element={<FoodLog />} />
-
         <Route path="/calorie-counter" element={<CalorieCounter />} />
       </Routes>
     </BrowserRouter>

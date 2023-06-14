@@ -138,7 +138,7 @@ export default function CalorieCounter() {
             onChange={(e) => setSelectedDate(e.target.value)}
           >
             {dates.length === 0 ? (
-              <option value={today}>{today}</option>
+              <option value={today}>{formatDate(today)}</option>
             ) : (
               dates.map((item, index) => (
                 <option key={index} value={item}>

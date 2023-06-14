@@ -29,41 +29,36 @@ export default function Login() {
 
   return (
     <>
-      <div className="card">
-        <img src="images/thailand.jpg" className="card-img" alt="..." />
-        <div className="card-img-overlay container" style={{ width: 800 }}>
-          <div className="card align-items-center position-absolute top-50 start-50 translate-middle w-50 h-auto p-3">
-            <img
-              src="images/logo-airbnb.png"
-              alt="logo"
-              className="w-25 py-5"
+      <div className="login-card card align-items-center position-absolute top-50 start-50 translate-middle w-50 h-auto p-5">
+        <form onSubmit={(e) => requestLogin(e)}>
+          <div className="card-body container">
+            <h4 className="text-danger">{errorMsg}</h4>
+            <label>Email</label>
+            <input
+              name="email"
+              type="email"
+              className="border rounded form-control"
+              required={true}
             />
-            <form onSubmit={(e) => requestLogin(e)}>
-              <div className="card-body container">
-                <h4 className="text-danger">{errorMsg}</h4>
-                <label>Email</label>
-                <input
-                  name="email"
-                  type="email"
-                  className="border rounded form-control"
-                />
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="border rounded form-control"
-                  name="password"
-                />
-                <button type="submit" className="btn btn-success mt-3">
-                  Login
-                </button>
-                <div>
-                  <span>
-                    New to Airbnb? <Link to="/signup">Signup</Link>
-                  </span>
-                </div>
-              </div>
-            </form>
+            <label>Password</label>
+            <input
+              type="password"
+              className="border rounded form-control"
+              required={true}
+              name="password"
+            />
+            <button type="submit" className="login-button btn btn-success mt-3">
+              Login
+            </button>
           </div>
+        </form>
+        <div>
+          <span>
+            New to Airbnb?{' '}
+            <Link to="/signup" className="signup-link">
+              Signup
+            </Link>
+          </span>
         </div>
       </div>
     </>
