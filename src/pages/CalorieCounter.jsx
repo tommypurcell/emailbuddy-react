@@ -63,7 +63,9 @@ export default function CalorieCounter() {
   // get dates from database and set state
   const getDates = async () => {
     let datesArr = []
-    const response = await axios.get('http://localhost:4000/foods')
+    const response = await axios.get(
+      'https://calorie-counter-api-s2xq.onrender.com/foods'
+    )
     for (let item of response.data) {
       datesArr.push(item.date)
     }
@@ -134,7 +136,6 @@ export default function CalorieCounter() {
           <select
             className='"form-select form-select-lg mb-3"'
             value={selectedDate}
-            defaultValue={today}
             onChange={(e) => setSelectedDate(e.target.value)}
           >
             {dates.length === 0 ? (
@@ -170,13 +171,13 @@ export default function CalorieCounter() {
                 </div>
                 <div className="plus-minus">
                   <a
-                    class="action-button"
+                    className="action-button"
                     onClick={() => subtractCalories(index, 100)}
                   >
                     - 100
                   </a>
                   <a
-                    class="action-button shadow animate red"
+                    className="action-button shadow animate red"
                     onClick={() => addCalories(index, 100)}
                   >
                     + 100

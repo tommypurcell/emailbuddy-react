@@ -6,7 +6,6 @@ import Nav from '../components/Nav'
 
 // ***************
 // TODO
-// be able to add items to previous days
 // create user login and authentication
 // ***************
 
@@ -25,11 +24,11 @@ export default function CalorieCounter() {
     setDate(`${month}/${day}/${year}`)
   }
 
-  // get food data from database and set state
   const getFoods = async () => {
-    const response = await axios.get('http://localhost:4000/foods')
+    const response = await axios.get('http://localhost:4000/foods', {
+      withCredentials: true,
+    })
     setFoodLog(response.data)
-    console.log(response.data)
   }
 
   // delete food item from database

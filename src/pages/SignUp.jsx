@@ -11,12 +11,15 @@ export default function SignUp() {
   // access api
   const makeAccount = async (e) => {
     e.preventDefault()
-    let newAccount = await axios.post('http://localhost:4000/signup', {
-      name: e.target.fullName.value,
-      avatar: e.target.profilePic.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-    })
+    let newAccount = await axios.post(
+      'https://calorie-counter-api-s2xq.onrender.com/signup',
+      {
+        name: e.target.fullName.value,
+        avatar: e.target.profilePic.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      }
+    )
 
     if (newAccount.data != 'User with this email already exists') {
       navigate('/')

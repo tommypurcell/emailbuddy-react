@@ -12,10 +12,14 @@ export default function Login() {
   const requestLogin = async (e) => {
     e.preventDefault()
 
-    let loginAccount = await axios.post('http://localhost:4000/login', {
-      email: e.target.email.value,
-      password: e.target.password.value,
-    })
+    let loginAccount = await axios.post(
+      // 'https://calorie-counter-api-s2xq.onrender.com/login',
+      'http://localhost:4000/login',
+      {
+        email: e.target.email.value,
+        password: e.target.password.value,
+      }
+    )
     console.log(loginAccount.data)
     if (
       loginAccount.data !=
