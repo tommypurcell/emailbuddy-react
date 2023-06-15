@@ -4,16 +4,30 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+axios.defaults.withCredentials = true
 
 export default function Profile() {
   // create state variable for user
   const [user, setUser] = useState({})
+  const [profile, setProfile] = useState({})
 
   // define houses
   const [houses, setHouses] = useState([])
 
   // navigate
   const navigate = useNavigate()
+
+  const getProfile = async () => {
+    try {
+      let profile = await axios.get(
+        'https://calorie-counter-api-s2xq.onrender.com/profile'
+      )
+      console.log(profile.data)
+      setProfile(profile.data)
+    } catch (err) {
+      console.error('Error fetching profile:', err.message)
+    }
+  }
 
   // houses array
 
@@ -248,4 +262,16 @@ export default function Profile() {
   //     </div>
   //   </>
   // )
+
+  return (
+    <>
+      <button onClick={getProfile}>Get Profile</button>
+      <ul>
+        <li>id: {profile._id}</li>
+        <li>name: {profile.name}</li>
+        <li>email: {profile.email}</li>
+        <li>avatar: {profile.avatar}</li>
+      </ul>
+    </>
+  )
 }

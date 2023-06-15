@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
-
+axios.defaults.withCredentials = true
 // trying this one using edamam instead of spoonacular
 // https://developer.edamam.com/edamam-docs-nutrition-api
 
@@ -63,9 +63,7 @@ export default function CalorieCounter() {
   // get dates from database and set state
   const getDates = async () => {
     let datesArr = []
-    const response = await axios.get(
-      'https://calorie-counter-api-s2xq.onrender.com/foods'
-    )
+    const response = await axios.get('http://localhost:4000/foods')
     for (let item of response.data) {
       datesArr.push(item.date)
     }
@@ -94,6 +92,7 @@ export default function CalorieCounter() {
   const removeFoodItem = (indexToRemove) => {
     // Filter out the item at the specified index
     const newFoodLog = foodLog.filter((item, index) => index !== indexToRemove)
+    console.log('new Food log', newFoodLog)
     setFoodLog(newFoodLog)
 
     // Subtract the calories of the removed item from the total
@@ -138,15 +137,12 @@ export default function CalorieCounter() {
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
           >
-            {dates.length === 0 ? (
-              <option value={today}>{formatDate(today)}</option>
-            ) : (
-              dates.map((item, index) => (
-                <option key={index} value={item}>
-                  {formatDate(item)}
-                </option>
-              ))
-            )}
+            <option value={today}>{formatDate(today)}</option>
+            {dates.map((item, index) => (
+              <option key={index} value={item}>
+                {formatDate(item)}
+              </option>
+            ))}
           </select>
         </h2>
         <div className="foods-container">

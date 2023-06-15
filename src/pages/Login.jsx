@@ -13,8 +13,8 @@ export default function Login() {
     e.preventDefault()
 
     let loginAccount = await axios.post(
-      // 'https://calorie-counter-api-s2xq.onrender.com/login',
-      'http://localhost:4000/login',
+      'https://calorie-counter-api-s2xq.onrender.com/login',
+      // 'http://localhost:4000/login',
       {
         email: e.target.email.value,
         password: e.target.password.value,
