@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 axios.defaults.withCredentials = true
 
+let render_url = 'https://calorie-counter-api-portalversion.onrender.com'
+let local_url = 'http://localhost:4000'
+
 export default function Nav() {
   const navigate = useNavigate()
 
@@ -11,7 +14,7 @@ export default function Nav() {
 
   // check if user is logged in
   const checkLogin = async () => {
-    let user = await axios.get('http://localhost:4000/profile')
+    let user = await axios.get(`${local_url}/profile`)
     if (user.data != 'Not authorized') {
       setLoggedIn(true)
     } else {
@@ -21,7 +24,7 @@ export default function Nav() {
 
   const requestLogout = async (e) => {
     e.preventDefault()
-    let userToLogout = await axios.get('http://localhost:4000/logout')
+    let userToLogout = await axios.get(`${local_url}/logout`)
     console.log(userToLogout.data)
     navigate('/login')
   }

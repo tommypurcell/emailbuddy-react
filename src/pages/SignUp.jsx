@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 axios.defaults.withCredentials = true
 
+let render_url = 'https://calorie-counter-api-portalversion.onrender.com'
+let local_url = 'http://localhost:4000'
+
 export default function SignUp() {
   const navigate = useNavigate()
   const [errorMsg, setErrorMsg] = useState('')
@@ -11,15 +14,12 @@ export default function SignUp() {
   // access api
   const makeAccount = async (e) => {
     e.preventDefault()
-    let newAccount = await axios.post(
-      'https://calorie-counter-api-s2xq.onrender.com/signup',
-      {
-        name: e.target.fullName.value,
-        avatar: e.target.profilePic.value,
-        email: e.target.email.value,
-        password: e.target.password.value,
-      }
-    )
+    let newAccount = await axios.post(`${local_url}/signup`, {
+      name: e.target.fullName.value,
+      avatar: e.target.profilePic.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+    })
 
     if (newAccount.data != 'User with this email already exists') {
       navigate('/')

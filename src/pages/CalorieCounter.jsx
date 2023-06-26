@@ -6,9 +6,12 @@ axios.defaults.withCredentials = true
 // trying this one using edamam instead of spoonacular
 // https://developer.edamam.com/edamam-docs-nutrition-api
 
+let render_url = 'https://calorie-counter-api-portalversion.onrender.com'
+let local_url = 'http://localhost:4000'
+
 export default function CalorieCounter() {
-  const applicationKey = '8803e138817c6dd9b43f6f0dcc52b9f1'
-  const applicationID = '7b70e049'
+  const applicationKey = '21bface20dc29be8fe5d8bcd08d14d33'
+  const applicationID = '2dafcce0'
   const [foodItem, setFoodItem] = useState('')
   const [foodLog, setFoodLog] = useState([])
   const [totalCalories, setTotalCalories] = useState(0)
@@ -63,7 +66,7 @@ export default function CalorieCounter() {
   // get dates from database and set state
   const getDates = async () => {
     let datesArr = []
-    const response = await axios.get('http://localhost:4000/foods')
+    const response = await axios.get(`${render_url}/foods`)
     for (let item of response.data) {
       datesArr.push(item.date)
     }
@@ -73,7 +76,7 @@ export default function CalorieCounter() {
   // post food item to database
   const postFoodItems = async () => {
     for (let item of foodLog) {
-      const response = await axios.post('http://localhost:4000/foods', {
+      const response = await axios.post(`${render_url}/foods`, {
         name: item.name,
         calories: item.calories,
         date: selectedDate,

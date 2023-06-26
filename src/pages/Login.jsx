@@ -4,25 +4,28 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 axios.defaults.withCredentials = true
 
+let render_url = 'https://calorie-counter-api-portalversion.onrender.com'
+let local_url = 'http://localhost:4000'
+
 export default function Login() {
   const navigate = useNavigate()
   const [errorMsg, setErrorMsg] = useState('')
 
-  // access api with login request
   const requestLogin = async (e) => {
     e.preventDefault()
 
     let loginAccount = await axios.post(
-      'https://calorie-counter-api-s2xq.onrender.com/login',
-      // 'http://localhost:4000/login',
+      `${render_url}/login`,
       {
         email: e.target.email.value,
         password: e.target.password.value,
-      }
+      },
+      { withCredentials: true } // This is necessary to receive and send cookies
     )
+
     console.log(loginAccount.data)
     if (
-      loginAccount.data !=
+      loginAccount.data !==
       'Cannot login: User does not exist. Please sign up instead.'
     ) {
       navigate('/')

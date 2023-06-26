@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 axios.defaults.withCredentials = true
 
+let render_url = 'https://calorie-counter-api-portalversion.onrender.com'
+let local_url = 'http://localhost:4000'
+
 // ***************
 // TODO
 // create user login and authentication
@@ -26,7 +29,7 @@ export default function CalorieCounter() {
   }
 
   const getFoods = async () => {
-    const response = await axios.get('http://localhost:4000/foods', {
+    const response = await axios.get(`${render_url}/foods`, {
       withCredentials: true,
     })
     setFoodLog(response.data)
@@ -35,7 +38,7 @@ export default function CalorieCounter() {
   // delete food item from database
   const deleteFoodItem = async (dayIndex, foodIndex) => {
     const idToDelete = foodLog[dayIndex].foods[foodIndex]._id
-    await axios.delete(`http://localhost:4000/foods/${idToDelete}`)
+    await axios.delete(`${render_url}/foods/${idToDelete}`)
     getFoods()
   }
 
@@ -43,7 +46,7 @@ export default function CalorieCounter() {
   const addCalories = async (dayIndex, foodIndex) => {
     const idToUpdate = foodLog[dayIndex].foods[foodIndex]._id
     const caloriesToAdd = foodLog[dayIndex].foods[foodIndex].calories + 10
-    await axios.patch(`http://localhost:4000/foods`, {
+    await axios.patch(`${render_url}/foods`, {
       id: idToUpdate,
       calories: caloriesToAdd,
     })
@@ -53,7 +56,7 @@ export default function CalorieCounter() {
   const subtractCalories = async (dayIndex, foodIndex) => {
     const idToUpdate = foodLog[dayIndex].foods[foodIndex]._id
     const caloriesToSubtract = foodLog[dayIndex].foods[foodIndex].calories - 10
-    await axios.patch(`http://localhost:4000/foods`, {
+    await axios.patch(`${render_url}/foods`, {
       id: idToUpdate,
       calories: caloriesToSubtract,
     })
