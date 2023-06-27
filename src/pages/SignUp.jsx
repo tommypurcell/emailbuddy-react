@@ -44,12 +44,7 @@ export default function SignUp() {
           </div>
           <div className="row text-start">Profile Picture</div>
           <div className="row">
-            <input
-              name="profilePic"
-              type="file"
-              className="border rounded"
-              required
-            />
+            <input name="profilePic" type="file" className="border rounded" />
           </div>
           <div className="row text-start">Email</div>
           <div className="row">
