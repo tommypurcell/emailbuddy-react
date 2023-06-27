@@ -46,11 +46,11 @@ export default function CalorieCounter() {
   const addCalories = async (dayIndex, foodIndex) => {
     const idToUpdate = foodLog[dayIndex].foods[foodIndex]._id
     const caloriesToAdd = foodLog[dayIndex].foods[foodIndex].calories + 10
+    console.log(`axios patch request sent to ${render_url}/foods`)
     await axios.patch(`${render_url}/foods`, {
       id: idToUpdate,
       calories: caloriesToAdd,
     })
-    console.log(`axios patch request sent to ${render_url}/foods`)
     getFoods()
   }
 

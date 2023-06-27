@@ -14,7 +14,7 @@ export default function SignUp() {
   // access api
   const makeAccount = async (e) => {
     e.preventDefault()
-    let newAccount = await axios.post(`${local_url}/signup`, {
+    let newAccount = await axios.post(`${render_url}/signup`, {
       name: e.target.fullName.value,
       avatar: e.target.profilePic.value,
       email: e.target.email.value,
