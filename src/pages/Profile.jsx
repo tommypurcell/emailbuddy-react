@@ -22,7 +22,7 @@ export default function Profile() {
 
   const getProfile = async () => {
     try {
-      let profile = await axios.get(`${local_url}/profile`, {
+      let profile = await axios.get(`${render_url}/profile`, {
         withCredentials: true,
       })
       console.log(profile.data)

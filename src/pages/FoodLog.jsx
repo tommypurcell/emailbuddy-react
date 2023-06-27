@@ -50,8 +50,10 @@ export default function CalorieCounter() {
       id: idToUpdate,
       calories: caloriesToAdd,
     })
+    console.log(`axios patch request sent to ${render_url}/foods`)
     getFoods()
   }
+
   // subtract ten calories from food item when button is clicked
   const subtractCalories = async (dayIndex, foodIndex) => {
     const idToUpdate = foodLog[dayIndex].foods[foodIndex]._id
