@@ -10,9 +10,11 @@ let local_url = 'http://localhost:4000'
 export default function Login() {
   const navigate = useNavigate()
   const [errorMsg, setErrorMsg] = useState('')
+  const [loginAttempt, setLoginAttempt] = useState(false)
 
   const requestLogin = async (e) => {
     e.preventDefault()
+    setLoginAttempt(true)
 
     let loginAccount = await axios.post(
       `${render_url}/login`,
@@ -38,35 +40,42 @@ export default function Login() {
     <>
       <div className="login-card card align-items-center position-absolute top-50 start-50 translate-middle w-50 h-auto p-5">
         <form onSubmit={(e) => requestLogin(e)}>
-          <div className="card-body container">
-            <h4 className="text-danger">{errorMsg}</h4>
-            <label>Email</label>
-            <input
-              name="email"
-              type="email"
-              className="border rounded form-control"
-              required={true}
-            />
-            <label>Password</label>
-            <input
-              type="password"
-              className="border rounded form-control"
-              required={true}
-              name="password"
-            />
-            <button type="submit" className="login-button btn btn-success mt-3">
-              Login
-            </button>
-          </div>
+          {loginAttempt && !errorMsg ? (
+            <h1>Logging in. Please Wait...</h1>
+          ) : (
+            <div className="card-body container">
+              <h4 className="text-danger">{errorMsg}</h4>
+              <label>Email</label>
+              <input
+                name="email"
+                type="email"
+                className="border rounded form-control"
+                required={true}
+              />
+              <label>Password</label>
+              <input
+                type="password"
+                className="border rounded form-control"
+                required={true}
+                name="password"
+              />
+              <button
+                type="submit"
+                className="login-button btn btn-success mt-3"
+              >
+                Login
+              </button>
+              <div>
+                <span>
+                  New to Calorie Counter?{' '}
+                  <Link to="/signup" className="signup-link">
+                    Signup
+                  </Link>
+                </span>
+              </div>
+            </div>
+          )}
         </form>
-        <div>
-          <span>
-            New to Airbnb?{' '}
-            <Link to="/signup" className="signup-link">
-              Signup
-            </Link>
-          </span>
-        </div>
       </div>
     </>
   )
