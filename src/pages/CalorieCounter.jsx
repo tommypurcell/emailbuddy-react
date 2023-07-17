@@ -18,6 +18,28 @@ export default function CalorieCounter() {
   const [totalCalories, setTotalCalories] = useState(0)
   const [selectedDate, setSelectedDate] = useState(``)
   const [dates, setDates] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // check if user is logged in
+  const checkLogin = async () => {
+    console.log('checking login...')
+    try {
+      let login = await axios.get(`${render_url}/profile`, {
+        withCredentials: true,
+        validateStatus: function (status) {
+          return status >= 200 && status < 500 // default is to resolve only on 2xx, this allows 401
+        },
+      })
+      if (login.data == 'User not logged in') {
+        console.log('user not logged in')
+        setIsLoggedIn(false)
+      } else {
+        setIsLoggedIn(true)
+      }
+    } catch (err) {
+      console.error('Error fetching profile:', err.message)
+    }
+  }
 
   // set up date object
   const date = new Date()
@@ -119,85 +141,158 @@ export default function CalorieCounter() {
   useEffect(() => {
     setSelectedDate(today)
     getDates()
+    checkLogin()
   }, [])
 
   return (
     <>
-      <Nav />
-      <main className="calorie-counter-container">
-        <form onSubmit={getFoodData}>
-          <span>Enter Food item</span>
-          <div>
-            <input type="text" value={foodItem} onChange={handleInputChange} />
-            <button type="submit" className="submit-food">
-              Submit
-            </button>
-          </div>
-        </form>
-        <h2>
-          Log foods eaten on{' '}
-          <select
-            className='"form-select form-select-lg mb-3"'
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-          >
-            <option value={today}>{formatDate(today)}</option>
-            {dates.map((item, index) => (
-              <option key={index} value={item}>
-                {formatDate(item)}
-              </option>
-            ))}
-          </select>
-        </h2>
-        <div className="foods-container">
-          {foodLog.map((item, index) => (
-            <div key={index}>
-              <article>
-                <p>Name: {item.name}</p>
-                <p>Calories: {item.calories} </p>
-                <div className="plus-minus">
-                  <a
-                    className="action-button"
-                    onClick={() => subtractCalories(index, 10)}
-                  >
-                    - 10
-                  </a>
-                  <a
-                    className="action-button shadow animate red"
-                    onClick={() => addCalories(index, 10)}
-                  >
-                    + 10
-                  </a>
-                </div>
-                <div className="plus-minus">
-                  <a
-                    className="action-button"
-                    onClick={() => subtractCalories(index, 100)}
-                  >
-                    - 100
-                  </a>
-                  <a
-                    className="action-button shadow animate red"
-                    onClick={() => addCalories(index, 100)}
-                  >
-                    + 100
-                  </a>
-                </div>
-                <button
-                  className="removeFood"
-                  onClick={() => removeFoodItem(index)}
-                >
-                  Remove
+      {!isLoggedIn ? (
+        <>
+          <Nav />
+          <main className="calorie-counter-container">
+            <form onSubmit={getFoodData}>
+              <span>Enter Food item</span>
+              <div>
+                <input
+                  type="text"
+                  value={foodItem}
+                  onChange={handleInputChange}
+                />
+                <button type="submit" className="submit-food">
+                  Submit
                 </button>
-              </article>
+              </div>
+            </form>
+            <div className="foods-container">
+              {foodLog.map((item, index) => (
+                <div key={index}>
+                  <article>
+                    <p>Name: {item.name}</p>
+                    <p>Calories: {item.calories} </p>
+                    <div className="plus-minus">
+                      <a
+                        className="action-button"
+                        onClick={() => subtractCalories(index, 10)}
+                      >
+                        - 10
+                      </a>
+                      <a
+                        className="action-button shadow animate red"
+                        onClick={() => addCalories(index, 10)}
+                      >
+                        + 10
+                      </a>
+                    </div>
+                    <div className="plus-minus">
+                      <a
+                        className="action-button"
+                        onClick={() => subtractCalories(index, 100)}
+                      >
+                        - 100
+                      </a>
+                      <a
+                        className="action-button shadow animate red"
+                        onClick={() => addCalories(index, 100)}
+                      >
+                        + 100
+                      </a>
+                    </div>
+                    <button
+                      className="removeFood"
+                      onClick={() => removeFoodItem(index)}
+                    >
+                      Remove
+                    </button>
+                  </article>
+                </div>
+              ))}
+              <h2>Total Calories: {totalCalories}</h2>
             </div>
-          ))}
-          <h2>Total Calories: {totalCalories}</h2>
-          <button className="send-to-foodlog" onClick={postFoodItems}>
-            add to foodlog
-          </button>
-        </div>
-      </main>
+          </main>
+        </>
+      ) : (
+        <>
+          <Nav />
+          <main className="calorie-counter-container">
+            <form onSubmit={getFoodData}>
+              <span>Enter Food item</span>
+              <div>
+                <input
+                  type="text"
+                  value={foodItem}
+                  onChange={handleInputChange}
+                />
+                <button type="submit" className="submit-food">
+                  Submit
+                </button>
+              </div>
+            </form>
+            <h2>
+              Log foods eaten on{' '}
+              <select
+                className='"form-select form-select-lg mb-3"'
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+              >
+                <option value={today}>{formatDate(today)}</option>
+                {dates.map((item, index) => (
+                  <option key={index} value={item}>
+                    {formatDate(item)}
+                  </option>
+                ))}
+              </select>
+            </h2>
+            <div className="foods-container">
+              {foodLog.map((item, index) => (
+                <div key={index}>
+                  <article>
+                    <p>Name: {item.name}</p>
+                    <p>Calories: {item.calories} </p>
+                    <div className="plus-minus">
+                      <a
+                        className="action-button"
+                        onClick={() => subtractCalories(index, 10)}
+                      >
+                        - 10
+                      </a>
+                      <a
+                        className="action-button shadow animate red"
+                        onClick={() => addCalories(index, 10)}
+                      >
+                        + 10
+                      </a>
+                    </div>
+                    <div className="plus-minus">
+                      <a
+                        className="action-button"
+                        onClick={() => subtractCalories(index, 100)}
+                      >
+                        - 100
+                      </a>
+                      <a
+                        className="action-button shadow animate red"
+                        onClick={() => addCalories(index, 100)}
+                      >
+                        + 100
+                      </a>
+                    </div>
+                    <button
+                      className="removeFood"
+                      onClick={() => removeFoodItem(index)}
+                    >
+                      Remove
+                    </button>
+                  </article>
+                </div>
+              ))}
+              <h2>Total Calories: {totalCalories}</h2>
+              <button className="send-to-foodlog" onClick={postFoodItems}>
+                add to foodlog
+              </button>
+            </div>
+          </main>
+        </>
+      )}
     </>
   )
 }

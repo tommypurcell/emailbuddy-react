@@ -37,7 +37,7 @@ export default function Nav() {
     <>
       {/* nav bar */}
       <nav className="logo-bar container">
-        <div className="nav-div">
+        <div className="d-flex flex-column flex-sm-column flex-md-row nav-div">
           <Link to="/calorie-counter" className="m-2">
             Calorie Counter
           </Link>

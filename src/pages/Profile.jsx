@@ -34,13 +34,18 @@ export default function Profile() {
 
   return (
     <>
-      <button onClick={getProfile}>Get Profile</button>
-      <ul>
-        <li>id: {profile._id}</li>
-        <li>name: {profile.name}</li>
-        <li>email: {profile.email}</li>
-        <li>avatar: {profile.avatar}</li>
-      </ul>
+      <Nav />
+      <div className="d-flex justify-content-center align-items-center">
+        <button className="h-50" onClick={getProfile}>
+          Get Profile
+        </button>
+        <ul>
+          <li>id: {profile._id}</li>
+          <li>name: {profile.name}</li>
+          <li>email: {profile.email}</li>
+          <li>avatar: {profile.avatar}</li>
+        </ul>
+      </div>
     </>
   )
 }
