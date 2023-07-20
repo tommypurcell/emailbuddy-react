@@ -7,6 +7,7 @@ import FoodLog from './pages/FoodLog'
 import SignUp from './pages/SignUp'
 import HouseCreate from './pages/HouseCreate'
 import HouseEdit from './pages/HouseEdit'
+import Stats from './pages/Stats'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import React from 'react'
@@ -19,7 +20,7 @@ function App() {
     // Router
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MealPlanGenerator />} />
+        <Route path="/" element={<CalorieCounter />} />
         <Route path="/house/:id" element={<House />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
@@ -28,6 +29,7 @@ function App() {
         <Route path="/house-edit" element={<HouseEdit />} />
         <Route path="/foodlog" element={<FoodLog />} />
         <Route path="/calorie-counter" element={<CalorieCounter />} />
+        <Route path="/stats" element={<Stats />} />
       </Routes>
     </BrowserRouter>
   )
