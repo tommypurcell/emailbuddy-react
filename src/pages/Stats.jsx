@@ -18,6 +18,28 @@ export default function Stats() {
   // state variable
   const [foodData, setFoodData] = useState([])
   const [data, setData] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // check if user is logged in
+  const checkLogin = async () => {
+    console.log('checking login...')
+    try {
+      let login = await axios.get(`${render_url}/profile`, {
+        withCredentials: true,
+        validateStatus: function (status) {
+          return status >= 200 && status < 500 // default is to resolve only on 2xx, this allows 401
+        },
+      })
+      if (login.data == 'User not logged in') {
+        console.log('user not logged in')
+        setIsLoggedIn(false)
+      } else {
+        setIsLoggedIn(true)
+      }
+    } catch (err) {
+      console.error('Error fetching profile:', err.message)
+    }
+  }
 
   // get calorie data
   const getCalories = async () => {
@@ -40,29 +62,38 @@ export default function Stats() {
   }
 
   useEffect(() => {
+    checkLogin()
     getCalories()
   }, [])
 
   return (
     <>
       <Nav />
-      <p className="text-center">Stats Page</p>
-      <div className="d-flex justify-content-center">
-        {data.length > 0 ? (
-          <div style={{ width: '100%', maxWidth: '600px', margin: 'auto' }}>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={data}>
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="calories" fill="#2c3333" />
-              </BarChart>
-            </ResponsiveContainer>
+      {isLoggedIn ? (
+        <>
+          <p className="text-center">Stats Page</p>
+          <div className="d-flex justify-content-center">
+            {data.length > 0 ? (
+              <div style={{ width: '100%', maxWidth: '600px', margin: 'auto' }}>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={data}>
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="calories" fill="#2c3333" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <p>No data available.</p>
+            )}
           </div>
-        ) : (
-          <p>No data available.</p>
-        )}
-      </div>
+        </>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center">
+          <h1>Please log in to view stats.</h1>
+        </div>
+      )}
     </>
   )
 }

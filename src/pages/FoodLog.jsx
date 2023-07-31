@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Params } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
+import { check } from 'prettier'
 axios.defaults.withCredentials = true
 
 let render_url = 'https://calorie-counter-api-portalversion.onrender.com'
@@ -18,6 +19,28 @@ export default function CalorieCounter() {
   const applicationID = '7b70e049'
   const [foodLog, setFoodLog] = useState([])
   const [date, setDate] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // check if user is logged in
+  const checkLogin = async () => {
+    console.log('checking login...')
+    try {
+      let login = await axios.get(`${render_url}/profile`, {
+        withCredentials: true,
+        validateStatus: function (status) {
+          return status >= 200 && status < 500 // default is to resolve only on 2xx, this allows 401
+        },
+      })
+      if (login.data == 'User not logged in') {
+        console.log('user not logged in')
+        setIsLoggedIn(false)
+      } else {
+        setIsLoggedIn(true)
+      }
+    } catch (err) {
+      console.error('Error fetching profile:', err.message)
+    }
+  }
 
   // format date
   const formatDate = (date) => {
@@ -75,51 +98,60 @@ export default function CalorieCounter() {
 
   useEffect(() => {
     getFoods()
+    checkLogin()
   }, [])
 
   return (
     <>
       <Nav />
-      <main className="food-log-container">
-        <h1>This is the food log</h1>
-        <button onClick={(e) => getFoods(e)}>Get Foods</button>
-        <div>
-          <div className="day-of-food">
-            {foodLog.map((day, dayIndex) => (
-              <div key={dayIndex}>
-                <h3>Date: {day.date}</h3>
-                <section className="food-log-item">
-                  {day.foods.map((food, foodIndex) => (
-                    <div key={foodIndex}>
-                      <p>Food: {food.name}</p>
-                      <p>Calories: {food.calories}</p>
-                      <div className="food-log-buttons">
-                        <button
-                          className="removeFood"
-                          onClick={() => deleteFoodItem(dayIndex, foodIndex)}
-                        >
-                          Remove
-                        </button>
-                        <button
-                          onClick={() => addCalories(dayIndex, foodIndex)}
-                        >
-                          +10
-                        </button>
-                        <button
-                          onClick={() => subtractCalories(dayIndex, foodIndex)}
-                        >
-                          -10
-                        </button>
+      {isLoggedIn ? (
+        <main className="food-log-container">
+          <h1>This is the food log</h1>
+          <button onClick={(e) => getFoods(e)}>Get Foods</button>
+          <div>
+            <div className="day-of-food">
+              {foodLog.map((day, dayIndex) => (
+                <div key={dayIndex}>
+                  <h3>Date: {day.date}</h3>
+                  <section className="food-log-item">
+                    {day.foods.map((food, foodIndex) => (
+                      <div key={foodIndex}>
+                        <p>Food: {food.name}</p>
+                        <p>Calories: {food.calories}</p>
+                        <div className="food-log-buttons">
+                          <button
+                            className="removeFood"
+                            onClick={() => deleteFoodItem(dayIndex, foodIndex)}
+                          >
+                            Remove
+                          </button>
+                          <button
+                            onClick={() => addCalories(dayIndex, foodIndex)}
+                          >
+                            +10
+                          </button>
+                          <button
+                            onClick={() =>
+                              subtractCalories(dayIndex, foodIndex)
+                            }
+                          >
+                            -10
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                  <h2>Total Calories: {day.totalCalories}</h2>
-                </section>
-              </div>
-            ))}
+                    ))}
+                    <h2>Total Calories: {day.totalCalories}</h2>
+                  </section>
+                </div>
+              ))}
+            </div>
           </div>
+        </main>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center">
+          <h1>Please log in to view foodlog.</h1>
         </div>
-      </main>
+      )}
     </>
   )
 }

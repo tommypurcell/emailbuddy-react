@@ -12,21 +12,49 @@ export default function SignUp() {
   const [errorMsg, setErrorMsg] = useState('')
 
   // access api
+
+  // Function to handle login after successful signup
+  const handleLoginAfterSignup = async (email, password) => {
+    try {
+      let loginAccount = await axios.post(
+        `${render_url}/login`,
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
+
+      console.log('login data', loginAccount.data)
+      navigate('/') // Redirect to the home page after successful login
+    } catch (error) {
+      setErrorMsg('Cannot login: User does not exist. Please sign up instead.')
+    }
+  }
+
   const makeAccount = async (e) => {
     e.preventDefault()
-    let newAccount = await axios.post(`${render_url}/signup`, {
-      name: e.target.fullName.value,
-      avatar: e.target.profilePic.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-    })
+    try {
+      let newAccount = await axios.post(`${render_url}/signup`, {
+        name: e.target.fullName.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      })
 
-    if (newAccount.data != 'User with this email already exists') {
-      navigate('/')
-    } else {
-      setErrorMsg(newAccount.data)
+      console.log('name', newAccount.data.name)
+
+      if (newAccount.data === 'User with this email already exists') {
+        setErrorMsg(newAccount.data)
+      } else {
+        // If the signup is successful, log in the user
+        await handleLoginAfterSignup(
+          newAccount.data.email,
+          newAccount.data.password
+        )
+      }
+    } catch (error) {
+      setErrorMsg('An error occurred during signup. Please try again later.')
     }
-    console.log(newAccount)
   }
 
   return (

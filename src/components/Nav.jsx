@@ -44,7 +44,7 @@ export default function Nav() {
           <Link to="/foodlog" className="m-2">
             Food Log
           </Link>
-          <Link to="/" className="m-2">
+          <Link to="/meal-plan-generator" className="m-2">
             Meal Plan Generator
           </Link>
           <Link to="/stats" className="m-2">

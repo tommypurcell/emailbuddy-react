@@ -14,13 +14,14 @@ import React from 'react'
 import HouseThumbnail from './components/HouseThumbnail'
 import MealPlanGenerator from './pages/MealPlanGenerator'
 import CalorieCounter from './pages/CalorieCounter'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
     // Router
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<CalorieCounter />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/house/:id" element={<House />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
@@ -30,6 +31,7 @@ function App() {
         <Route path="/foodlog" element={<FoodLog />} />
         <Route path="/calorie-counter" element={<CalorieCounter />} />
         <Route path="/stats" element={<Stats />} />
+        <Route path="/meal-plan-generator" element={<MealPlanGenerator />} />
       </Routes>
     </BrowserRouter>
   )
