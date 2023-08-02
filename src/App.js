@@ -15,6 +15,7 @@ import HouseThumbnail from './components/HouseThumbnail'
 import MealPlanGenerator from './pages/MealPlanGenerator'
 import CalorieCounter from './pages/CalorieCounter'
 import LandingPage from './pages/LandingPage'
+import EmailForm from './pages/EmailForm'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/calorie-counter" element={<CalorieCounter />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/meal-plan-generator" element={<MealPlanGenerator />} />
+        <Route path="/email-form" element={<EmailForm />} />
       </Routes>
     </BrowserRouter>
   )
