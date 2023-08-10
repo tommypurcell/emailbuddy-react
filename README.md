@@ -2,6 +2,8 @@
 
 Welcome to the **Email App React** project repository! This is a web application built using React that enables you to send personalized emails to recipients by using CSV data and an HTML editor. Whether you're sending newsletters, announcements, or other types of emails, this app simplifies the process and allows you to efficiently manage and deliver your content.
 
+[![Email App React](/public/images/Screen%20Shot%202023-08-09%20at%209.38.21%20PM.png)]
+
 ## Table of Contents
 
 - [Features](#features)
