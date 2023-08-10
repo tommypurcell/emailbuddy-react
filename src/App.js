@@ -22,7 +22,7 @@ function App() {
     // Router
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<EmailForm />} />
         <Route path="/house/:id" element={<House />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
