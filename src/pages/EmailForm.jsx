@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import Papa from 'papaparse' // Import papaparse
-import Nav from '../components/Nav'
 
 axios.defaults.withCredentials = true
 
@@ -73,27 +72,6 @@ export default function EmailForm() {
     }
   }
 
-  // check if user is logged in
-  const checkLogin = async () => {
-    console.log('checking login...')
-    try {
-      let login = await axios.get(`${render_url}/profile`, {
-        withCredentials: true,
-        validateStatus: function (status) {
-          return status >= 200 && status < 500 // default is to resolve only on 2xx, this allows 401
-        },
-      })
-      if (login.data == 'User not logged in') {
-        console.log('user not logged in')
-        setIsLoggedIn(false)
-      } else {
-        setIsLoggedIn(true)
-      }
-    } catch (err) {
-      console.error('Error fetching profile:', err.message)
-    }
-  }
-
   // set title
   const populateTitle = (e) => {
     e.preventDefault()
@@ -142,7 +120,6 @@ export default function EmailForm() {
 
   useEffect(() => {
     console.log('csvData', typeof csvData)
-    checkLogin()
   }, [])
 
   useEffect(() => {
