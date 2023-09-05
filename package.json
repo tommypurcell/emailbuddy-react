@@ -43,8 +43,10 @@
     ]
   },
   "devDependencies": {
+    "daisyui": "^3.5.1",
     "eslint": "^8.38.0",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "tailwindcss": "^3.3.3"
   },
   "proxy": "http://localhost:4000"
 }
